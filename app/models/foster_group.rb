@@ -1,0 +1,2 @@
+class FosterGroup < ApplicationRecord
+end
