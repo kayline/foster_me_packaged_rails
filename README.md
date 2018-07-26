@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Experimenting with the Rails API framework as a backend for a React app.
 
-Things you may want to cover:
+I foster rescue kittens for the SPCA. There is a lot to manage. I'm building the app I wish I had.
 
-* Ruby version
+## Running the app
+```rails server```
 
-* System dependencies
+## Running the tests
+```rake rspec```
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
