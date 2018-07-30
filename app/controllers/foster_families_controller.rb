@@ -7,6 +7,6 @@ class FosterFamiliesController < ApplicationController
 
 	def show
 		@foster_family = FosterFamily.find(params[:id])
-		render json: @foster_family
+		render json: @foster_family, include: :animals
 	end
 end

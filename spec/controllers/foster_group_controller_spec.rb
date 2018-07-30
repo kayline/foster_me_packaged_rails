@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe FosterGroupController, type: :controller do
+RSpec.describe FosterFamilyController, type: :controller do
 
 end
