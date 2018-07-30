@@ -4,4 +4,9 @@ class FosterGroupsController < ApplicationController
 
 		render json: @foster_groups
 	end
+
+	def show
+		@foster_group = FosterGroup.find(params[:id])
+		render json: @foster_group
+	end
 end
