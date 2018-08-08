@@ -6,8 +6,8 @@
     "npm": "6.2.0"
   },
   "scripts": {
-    "build": "cd client && npm install && npm build && cd ..",
+    "build": "cd client && npm install && npm run-script build && cd ..",
     "deploy": "cp -a client/build/. public/",
-    "heroku-postbuild": "npm build && npm deploy"
+    "heroku-postbuild": "npm run-script build && npm run-script deploy"
   }
 }
