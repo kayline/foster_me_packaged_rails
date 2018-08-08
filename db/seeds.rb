@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+family = FosterFamily.create(name: "The Pie Babies")
+
+Animal.create(name: "Pecan", age: 3, foster_family: family, sex: "Male", description: "The nutty one")
+Animal.create(name: "Pumpkin", age: 3, foster_family: family, sex: "Female", description: "The cutest one")
+
