@@ -1,7 +1,10 @@
 {
   "name": "foster-me",
   "license": "MIT",
-  
+  "engines": {
+    "node": "10.7.1",
+    "npm": "6.2.0"
+  },
   "scripts": {
     "build": "cd client && npm install && npm build && cd ..",
     "deploy": "cp -a client/build/. public/",
