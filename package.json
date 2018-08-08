@@ -1,0 +1,10 @@
+{
+  "name": "foster-me",
+  "license": "MIT",
+  
+  "scripts": {
+    "build": "cd client && npm install && npm build && cd ..",
+    "deploy": "cp -a client/build/. public/",
+    "heroku-postbuild": "npm build && npm deploy"
+  }
+}
