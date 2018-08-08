@@ -1,0 +1,13 @@
+.page-header {
+	background-color: #e37222;
+  padding-left: 20px;
+  padding-top: 15px;
+  padding-bottom: 11px;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.app-logo-header {
+  	height: 60px;
+  	width: 60px;
+}

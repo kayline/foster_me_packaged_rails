@@ -1,0 +1,31 @@
+.App {
+  text-align: center;
+}
+
+.App-logo-splash {
+  height: 120px;
+}
+
+.App-header-splash {
+  background-color: #e37222;
+  padding: 20px;
+  color: white;
+}
+
+.header.App-title {
+  padding-top: 10px;
+  margin-top: 0;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.attribution {
+  font-size: small;
+  text-align: left;
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+}
