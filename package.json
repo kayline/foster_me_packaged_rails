@@ -2,7 +2,7 @@
   "name": "foster-me",
   "license": "MIT",
   "engines": {
-    "node": "10.7.1",
+    "node": "10.7.0",
     "npm": "6.2.0"
   },
   "scripts": {
