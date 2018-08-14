@@ -1,0 +1,8 @@
+.animal-pic {
+	max-width: 100px;
+	max-height: 100px;
+}
+
+.animal-list > .name {
+	font-weight: bold;
+}

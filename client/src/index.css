@@ -1,6 +1,7 @@
 @import './styles/page_header.css';
 @import './styles/layout.css';
 @import './styles/foster_family_list.css';
+@import './styles/animal.css';
 
 body {
   margin: 0;

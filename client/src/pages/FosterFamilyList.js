@@ -22,7 +22,7 @@ class FosterFamilyList extends Component {
 		return (
 			<div className="splash-page-families">
 				<Header size="large">Your Foster Families</Header>
-					<List celled className="list-families">
+					<List divided verticalAlign='middle' className="list-families">
 	        {this.state.fosterFamilies.map(family => (
 	      		<FosterFamilyListItem
 	      			key={family.id}
