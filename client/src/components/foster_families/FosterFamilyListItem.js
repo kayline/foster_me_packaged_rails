@@ -1,26 +1,24 @@
 import React, { Component } from 'react';
-import { List, Header } from 'semantic-ui-react'
+import { List, Icon, Header } from 'semantic-ui-react'
 
 class FosterFamilyListItem extends Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			id: props.id,
-			name: props.name
-		}
+	renderCompletionBadge() {
+		if(!this.props.family.active) { return <Icon className="icon-completion" name='check'/>}
 	}
 
 	render() {
+		var listClasses = this.props.family.active ? "list-item-family" : "list-item-family complete"
 		return (
-			<List.Item className="list-item-family">
+			<List.Item className={listClasses}>
+				{this.renderCompletionBadge()}
 				<List.Content>
-				<Header size="medium">
-					<a href={'/foster-families/' + this.props.id}>
-			        <div key={this.props.id}>
-			          {this.props.name}
-			        </div>
-	        </a>
-        </Header>
+					<List.Header>
+						<a href={'/foster-families/' + this.props.family.id}>
+				        <div key={this.props.family.id}>
+				          {this.props.family.name}
+				        </div>
+		        </a>
+	        </List.Header>
         </List.Content>
 			</List.Item>
 		)

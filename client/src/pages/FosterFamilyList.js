@@ -26,8 +26,8 @@ class FosterFamilyList extends Component {
 	        {this.state.fosterFamilies.map(family => (
 	      		<FosterFamilyListItem
 	      			key={family.id}
-	      			id={family.id}
-	      			name={family.name}/>
+	      			family={family}
+	      		/>
 	        ))}
         </List>
 			</div>

@@ -7,8 +7,12 @@
 .list-families {
 }
 
-.list-item-family {
+.list-item-family.complete {
+	background-color: #D3D3D3;
+}
 
+.list-item-family.complete a {
+	color: gray;
 }
 
 
