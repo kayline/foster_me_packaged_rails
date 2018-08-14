@@ -8,6 +8,6 @@
 
 family = FosterFamily.create(name: "The Pie Babies")
 
-Animal.create(name: "Pecan", age: 3, foster_family: family, sex: "Male", description: "The nutty one")
-Animal.create(name: "Pumpkin", age: 3, foster_family: family, sex: "Female", description: "The cutest one")
+Animal.create(name: "Pecan", date_of_birth: Date.parse("2017-03-01"), foster_family: family, sex: "Male", description: "The nutty one")
+Animal.create(name: "Pumpkin", date_of_birth: Date.parse("2017-03-01"), foster_family: family, sex: "Female", description: "The cutest one")
 
