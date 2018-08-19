@@ -6,7 +6,8 @@ class FosterFamilyList extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			fosterFamilies: []
+			activeFosterFamilies: [],
+			completedFosterFamilies: []
 		}
 	}
 
@@ -14,21 +15,33 @@ class FosterFamilyList extends Component {
 		fetch('/api/foster_families')
 			.then(response => response.json())
 			.then(result => {
-				this.setState({fosterFamilies: result})
+				this.setState({
+					activeFosterFamilies: result.filter(family => family.active),
+					completedFosterFamilies: result.filter(family => !family.active)
+				})
 			})
 	}
 
 	render() {
 		return (
 			<div className="splash-page-families">
-				<Header size="large">Your Foster Families</Header>
-					<List divided verticalAlign='middle' className="list-families">
-	        {this.state.fosterFamilies.map(family => (
-	      		<FosterFamilyListItem
-	      			key={family.id}
-	      			family={family}
-	      		/>
-	        ))}
+				<Header size="large">Your Active Foster Families</Header>
+					<List divided verticalAlign='middle' className="list-families-active">
+		        {this.state.activeFosterFamilies.map(family => (
+		      		<FosterFamilyListItem
+		      			key={family.id}
+		      			family={family}
+		      		/>
+		        ))}
+	        </List>
+	        <Header size="large" className="families-header-completed">Your Completed Foster Families</Header>
+	        <List divided verticalAlign='middle' className="list-families-completed">
+		        {this.state.completedFosterFamilies.map(family => (
+		      		<FosterFamilyListItem
+		      			key={family.id}
+		      			family={family}
+		      		/>
+	        	))}
         </List>
 			</div>
 		)
