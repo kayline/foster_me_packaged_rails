@@ -19,7 +19,6 @@ class Home extends Component {
 
 	getHomeContent() {
 		if(this.state.current_user != null) {
-			console.log('found a current user', this.state)
     	return <FosterFamilyList/>
     } else {
     	return <Welcome/>
