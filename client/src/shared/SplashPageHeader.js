@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { Header } from 'semantic-ui-react'
 import logo from '../assets/paw_logo_white.svg';
-import { Header, Button } from 'semantic-ui-react'
 
 class SplashPageHeader extends Component {
 	render() {
@@ -8,9 +8,8 @@ class SplashPageHeader extends Component {
 			<header className="App-header-splash">
 	      <img src={logo} className="App-logo-splash" alt="logo" />
 	      <Header size="huge" className="App-title">Welcome to FosterMe</Header>
-	      <Button><a href="/users/sign_out">Sign Out</a></Button>
     	</header>
-			)
+		)
 	}
 }
 
