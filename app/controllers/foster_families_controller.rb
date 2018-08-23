@@ -1,6 +1,6 @@
 class FosterFamiliesController < ApplicationController
 	def index
-		@foster_families = FosterFamily.all
+		@foster_families = FosterFamily.where(user_id: current_user.id)
 
 		render json: @foster_families
 	end
