@@ -26,23 +26,23 @@ class FosterFamilyList extends Component {
 		return (
 			<div className="splash-page-families">
 				<Header size="large">Your Active Foster Families</Header>
-					<List divided verticalAlign='middle' className="list-families-active">
-		        {this.state.activeFosterFamilies.map(family => (
-		      		<FosterFamilyListItem
-		      			key={family.id}
-		      			family={family}
-		      		/>
-		        ))}
-	        </List>
-	        <Header size="large" className="families-header-completed">Your Completed Foster Families</Header>
-	        <List divided verticalAlign='middle' className="list-families-completed">
-		        {this.state.completedFosterFamilies.map(family => (
-		      		<FosterFamilyListItem
-		      			key={family.id}
-		      			family={family}
-		      		/>
-	        	))}
+				<List divided verticalAlign='middle' className="list-families-active">
+	        {this.state.activeFosterFamilies.map(family => (
+	      		<FosterFamilyListItem
+	      			key={family.id}
+	      			family={family}
+	      		/>
+	        ))}
         </List>
+        <Header size="large" className="families-header-completed">Your Completed Foster Families</Header>
+        <List divided verticalAlign='middle' className="list-families-completed">
+	        {this.state.completedFosterFamilies.map(family => (
+	      		<FosterFamilyListItem
+	      			key={family.id}
+	      			family={family}
+	      		/>
+        	))}
+      	</List>
 			</div>
 		)
 	}
