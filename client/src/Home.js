@@ -20,7 +20,7 @@ class Home extends Component {
 	getHomeContent() {
 		if(this.state.fetchComplete && this.state.current_user === null) {
 			return <Welcome/>
-    } else {
+    } else if(this.state.fetchComplete) {
     	return <FosterFamilyList/>
     }
 	}
