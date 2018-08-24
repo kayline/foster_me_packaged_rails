@@ -3,3 +3,28 @@
 body {
 	text-align: center;
 }
+
+.rails-views-header {
+	background-color: #e37222;
+	color: white;
+	height: 150px;
+
+	.logo {
+		padding-top: 20px;
+		height: 130px;
+	}
+}
+
+.ui.message.success {
+	margin: 20px 35% 0 35%;
+	/*color: white;
+	background-color: #69BE28;
+	border-color: #347800; */
+}
+
+.ui.message.error {
+	margin: 20px 35% 0 35%;
+	/*color: white;*/
+	/*background-color: #DB2133;
+	border-color: #8A000D;*/
+}

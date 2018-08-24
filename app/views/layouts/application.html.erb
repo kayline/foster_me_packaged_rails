@@ -9,8 +9,14 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+  	<header class="rails-views-header">
+    	<img class="logo" src="/images/paw_logo_white.svg"/>
+  	</header>
+  	<% if notice %>
+  		<p class="ui success message"><%= notice %></p>
+		<% elsif alert %>
+  		<p class="ui error message"><%= alert %></p>
+		<% end %>
     <%= yield %>
   </body>
 </html>
