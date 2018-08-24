@@ -1,2 +1,2 @@
-class AnimalsController < ApplicationController
+class AnimalsController < ApiController
 end

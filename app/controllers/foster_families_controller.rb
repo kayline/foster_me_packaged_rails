@@ -1,4 +1,4 @@
-class FosterFamiliesController < ApplicationController
+class FosterFamiliesController < ApiController
 	def index
 		@foster_families = FosterFamily.where(user_id: current_user.id)
 
