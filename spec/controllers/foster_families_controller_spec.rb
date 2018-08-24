@@ -77,11 +77,25 @@ RSpec.describe FosterFamiliesController do
 			end
 
 			describe 'when the family does not belong to the user' do
-				it 'returns a 401 error' 
+				it 'returns a 401 error' do
+					get :show, params: {id: other_family.id}
+
+					message = json(response)['errors'].first
+
+					expect(response.status).to eq 404
+					expect(message).to eq 'Family not found'
+				end
 			end
 
 			describe 'when the family does not exist' do
-				it 'returns a 404 error'
+				it 'returns a 404 error' do
+					get :show, params: {id: 2000}
+
+					message = json(response)['errors'].first
+
+					expect(response.status).to eq 404
+					expect(message).to eq 'Family not found'
+				end
 			end
 		end
 	end
