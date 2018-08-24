@@ -1,6 +1,4 @@
-module ApiHelper  
-  include Rack::Test::Methods
-
+module ApiHelper
   def app
     Rails.application
   end
