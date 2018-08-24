@@ -24,7 +24,7 @@ class FosterFamilyList extends Component {
 				fetchComplete: true
 			})
 		})
-		.catch(error => console.log(error))
+		.catch(error => console.error(error))
 	}
 
 	handleErrors(response) {
