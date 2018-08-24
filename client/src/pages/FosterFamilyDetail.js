@@ -10,14 +10,47 @@ class FosterFamilyDetail extends Component {
 			id: props.match.params.id,
 			family:{
 				animals: []
-			}
+			},
+			error: null,
+			fetchComplete: false
 		}
 	}
 
 	componentDidMount() {
 		fetch('/api/foster_families/' + this.state.id)
+		.then(response => this.handleErrors(response))
 		.then(response => response.json())
-		.then(family => this.setState({family: family}))
+		.then(result => this.setState({family: result, fetchComplete: true}))
+		.catch(error => {
+			this.setState({error: error})
+			console.log(error)
+		})
+	}
+
+	handleErrors(response) {
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
+    return response;
+	}
+
+	getContent() {
+		if(this.state.fetchComplete && this.state.error === null) {
+			return (
+				<div>
+					<Header size="large">{this.state.family.name}</Header>
+					<List celled>
+						{this.state.family.animals.map(animal => (
+		      		<Animal
+		      			key={animal.id}
+		      			animal={animal}/>
+		        ))}
+	        </List>
+        </div>
+			)
+		} else {
+			return <div/>
+		}
 	}
 
 	render() {
@@ -25,14 +58,7 @@ class FosterFamilyDetail extends Component {
 			<div>
 				<PageHeader/>
 				<div className="container">
-					<Header size="large">{this.state.family.name}</Header>
-						<List celled>
-						{this.state.family.animals.map(animal => (
-		      		<Animal
-		      			key={animal.id}
-		      			animal={animal}/>
-		        ))}
-	        </List>
+					{this.getContent()}
         </div>
 			</div>
 		)
