@@ -15,6 +15,7 @@ class FosterFamilyList extends Component {
 
 	componentDidMount() {
 		fetch('/api/foster_families')
+		.then(response => this.handleErrors(response))
 		.then(response => response.json())
 		.then(result => {
 			this.setState({
@@ -23,6 +24,14 @@ class FosterFamilyList extends Component {
 				fetchComplete: true
 			})
 		})
+		.catch(error => console.log(error))
+	}
+
+	handleErrors(response) {
+    if (!response.ok) {
+      throw Error(response.statusText);
+    }
+    return response;
 	}
 
 	getLists() {
@@ -32,7 +41,7 @@ class FosterFamilyList extends Component {
 					<Header size="medium">Oops! Looks like you don't have any foster families in our system</Header>
 				</div>
 			)
-		} else {
+		} else if(this.state.fetchComplete) {
 			return (
 				<div className="lists-families">
 					<Header size="large">Your Active Foster Families</Header>

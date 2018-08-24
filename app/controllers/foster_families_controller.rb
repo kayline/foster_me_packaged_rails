@@ -1,4 +1,6 @@
 class FosterFamiliesController < ApiController
+	before_action :ensure_current_user!
+
 	def index
 		@foster_families = FosterFamily.where(user_id: current_user.id)
 
