@@ -6,10 +6,14 @@ import Home from '../../pages/Home.js'
 var currentUserRequest
 
 beforeEach(() => {
-	fetchMock.get('/api/current_user', 200)
+	fetchMock.get('/api/current_user', {status: 200, body: {}})
 })
 
-it('fetches the current user on mount',() => {
+afterEach(() => {
+	fetchMock.restore()
+})
+
+it('fetches the current user on mount', () => {
 	const wrapper = shallow(<Home />);
 	expect(fetchMock.lastUrl()).toEqual('/api/current_user')
 })

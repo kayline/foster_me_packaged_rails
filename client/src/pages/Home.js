@@ -14,11 +14,11 @@ class Home extends Component {
 	componentDidMount() {
 		fetch('/api/current_user')
 		.then(response => response.json())
-		.then(current_user => this.setState({current_user: current_user, fetchComplete: true}))
+		.then(result => this.setState({current_user: result.current_user, fetchComplete: true}))
 	}
 
 	getHomeContent() {
-		if(this.state.fetchComplete && this.state.current_user === null) {
+		if(this.state.fetchComplete && this.state.current_user === undefined) {
 			return <Welcome/>
     } else if(this.state.fetchComplete) {
     	return <FosterFamilyList/>
