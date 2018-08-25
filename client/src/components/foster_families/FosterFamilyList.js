@@ -14,7 +14,7 @@ class FosterFamilyList extends Component {
 	}
 
 	componentDidMount() {
-		fetch('/api/foster_families')
+		return fetch('/api/foster_families')
 		.then(response => this.handleErrors(response))
 		.then(response => response.json())
 		.then(result => {
