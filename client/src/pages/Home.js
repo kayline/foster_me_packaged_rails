@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import FosterFamilyList from './pages/FosterFamilyList.js'
-import Welcome from './pages/Welcome.js'
+import FosterFamilyList from '../components/foster_families/FosterFamilyList.js'
+import Welcome from '../components/Welcome.js'
 
 class Home extends Component {
 	constructor(props) {

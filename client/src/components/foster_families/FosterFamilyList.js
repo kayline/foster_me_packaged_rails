@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { List, Header } from 'semantic-ui-react'
-import PageHeader from '../shared/PageHeader.js'
-import FosterFamilyListItem from '../components/foster_families/FosterFamilyListItem.js';
+import PageHeader from '../../shared/PageHeader.js'
+import FosterFamilyListItem from './FosterFamilyListItem.js';
 
 class FosterFamilyList extends Component {
 	constructor(props) {
