@@ -12,7 +12,7 @@ class Home extends Component {
 	}
 
 	componentDidMount() {
-		fetch('/api/current_user')
+		return fetch('/api/current_user')
 		.then(response => response.json())
 		.then(result => this.setState({current_user: result.current_user, fetchComplete: true}))
 	}
