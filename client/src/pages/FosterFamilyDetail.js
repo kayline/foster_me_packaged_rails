@@ -17,7 +17,7 @@ class FosterFamilyDetail extends Component {
 	}
 
 	componentDidMount() {
-		fetch('/api/foster_families/' + this.state.id)
+		return fetch('/api/foster_families/' + this.state.id)
 		.then(response => this.handleErrors(response))
 		.then(response => response.json())
 		.then(result => this.setState({family: result, fetchComplete: true}))
@@ -48,16 +48,14 @@ class FosterFamilyDetail extends Component {
 	        </List>
         </div>
 			)
-		} else {
-			return <div/>
-		}
+		} 
 	}
 
 	render() {
 		return (
 			<div>
 				<PageHeader/>
-				<div className="container">
+				<div className="family-container">
 					{this.getContent()}
         </div>
 			</div>
