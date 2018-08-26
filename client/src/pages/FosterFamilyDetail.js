@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Header, List } from 'semantic-ui-react'
 import PageHeader from '../shared/PageHeader.js'
 import Animal from '../components/animals/Animal.js'
+import NotFound from './NotFound.js'
 
 class FosterFamilyDetail extends Component {
 	constructor(props) {
@@ -21,10 +22,7 @@ class FosterFamilyDetail extends Component {
 		.then(response => this.handleErrors(response))
 		.then(response => response.json())
 		.then(result => this.setState({family: result, fetchComplete: true}))
-		.catch(error => {
-			this.setState({error: error})
-			console.log(error)
-		})
+		.catch(error => this.setState({error: error, fetchComplete: true}))
 	}
 
 	handleErrors(response) {
@@ -48,14 +46,16 @@ class FosterFamilyDetail extends Component {
 	        </List>
         </div>
 			)
-		} 
+		} else if (this.state.fetchComplete) {
+			return <NotFound />
+		}
 	}
 
 	render() {
 		return (
 			<div>
 				<PageHeader/>
-				<div className="family-container">
+				<div className="container family-container">
 					{this.getContent()}
         </div>
 			</div>

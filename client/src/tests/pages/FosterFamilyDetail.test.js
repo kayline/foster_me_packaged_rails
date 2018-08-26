@@ -19,7 +19,7 @@ afterEach(() => {
 it('fetches the foster family on mount', () => {
 	const emptyFamily = { id: 1, animals: []}
 	fetchMock.get('/api/foster_families/1', {status: 200, body: emptyFamily})
-	const container = <div className="family-container"></div>
+	const container = <div className="container family-container"></div>
 	
 	const wrapper = shallow(<FosterFamilyDetail match={fakeRouteInfo}/>);
 	
@@ -41,4 +41,17 @@ it('renders the family details', async () => {
 	
 	expect(wrapper.contains(header)).toEqual(true)
 	expect(wrapper.contains(animalItem)).toEqual(true)
+})
+
+it('renders an error message if the family is not found', async () => {
+	const errorResponse = { errors: ['Foster family not found']}
+	fetchMock.get('/api/foster_families/1', {status: 401, body: errorResponse})
+	
+	const notFound = <NotFound />
+	
+	const wrapper = shallow(<FosterFamilyDetail match={fakeRouteInfo}/>);
+	await wrapper.instance().componentDidMount()
+  wrapper.update()
+	
+	expect(wrapper.contains(notFound)).toEqual(true)
 })
