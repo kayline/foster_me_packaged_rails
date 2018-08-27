@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Header, Form, Button } from 'semantic-ui-react'
+import { Header } from 'semantic-ui-react'
 import PageHeader from '../shared/PageHeader.js'
+import NewFosterFamilyForm from '../components/foster_families/NewFosterFamilyForm.js'
 
-class NotFound extends Component {
+class NewFosterFamily extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -25,9 +26,9 @@ class NotFound extends Component {
 		this.setState({family: updatedFamily})
 	}
 
-	onFormSubmit = () => {
+	onFormSubmit = (familyData) => {
 		const headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
-		return fetch('/api/foster_families', {method: 'post', headers: headers, body: JSON.stringify(this.state.family)})
+		return fetch('/api/foster_families', {method: 'post', headers: headers, body: JSON.stringify(familyData)})
 	}
 
 	render() {
@@ -37,18 +38,11 @@ class NotFound extends Component {
 				<div className="container new-foster-family-container">
 					<Header size="large">Add Your Foster Family</Header>
 					<img src="/images/upside-down-cat.jpg" alt="excited-cat"/>
-					<Form onSubmit={this.onFormSubmit}>
-			    <Form.Field>
-			      <label>Family Name</label>
-			      <input onChange={this.onFormChange} name="name" className="name" placeholder='Family Name' />
-			    </Form.Field>
-			    <Form.Field onChange={this.onFormChange} control="input" type="checkbox" name="active" className="active" label='Currently Fostering' />
-			    <Button type='submit'>Submit</Button>
-					</Form>
+					<NewFosterFamilyForm handleSubmit={this.onFormSubmit} />
 				</div>
 			</div>
 		)
 	}
 }
 
-export default NotFound
+export default NewFosterFamily
