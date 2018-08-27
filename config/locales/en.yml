@@ -31,3 +31,13 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      foster_family:
+        active: "Currently Fostering status"
+    errors:
+      models:
+        foster_family:
+          attributes:
+            active:
+              inclusion: "is required"

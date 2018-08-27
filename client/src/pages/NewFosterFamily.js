@@ -8,7 +8,8 @@ class NewFosterFamily extends Component {
 		super(props)
 		this.state = {
 			family: {
-			}
+			},
+			errors: []
 		}
 	}
 
@@ -29,6 +30,23 @@ class NewFosterFamily extends Component {
 	onFormSubmit = (familyData) => {
 		const headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 		return fetch('/api/foster_families', {method: 'post', headers: headers, body: JSON.stringify(familyData)})
+					 .then(response => this.handleErrors(response))
+	}
+
+	handleErrors(response) {
+    if (!response.ok) {
+    	return response.json()
+    	.then(result => this.setState({errors: result.errors}))
+    }
+    return response
+	}
+
+	renderErrors() {
+		if(this.state.errors.length > 0) {
+			return (
+				<div className="error create-family-error">{this.state.errors.join(', ')}</div>
+			)
+		}
 	}
 
 	render() {
@@ -36,6 +54,7 @@ class NewFosterFamily extends Component {
 			<div className="new-foster-family">
 				<PageHeader />
 				<div className="container new-foster-family-container">
+					{this.renderErrors()}
 					<Header size="large">Add Your Foster Family</Header>
 					<img src="/images/upside-down-cat.jpg" alt="excited-cat"/>
 					<NewFosterFamilyForm handleSubmit={this.onFormSubmit} />

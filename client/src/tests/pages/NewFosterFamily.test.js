@@ -26,3 +26,16 @@ it('sends the family data to the api on submit', () => {
 	expect(fetchMock.lastCall()[1].body).toEqual(JSON.stringify({name: 'Bob', active: true}))
 	expect(fetchMock.lastCall()[1].method).toEqual('post')
 })
+
+it('displays an error message if the create did not succeed', async () => {
+	fetchMock.post('/api/foster_families', {status: 500, body: {errors: ['Active field cannot be blank', 'Some other problem']}})
+	
+	const errorMessage = <div className="error create-family-error">Active field cannot be blank, Some other problem</div>
+	
+	const wrapper = shallow(<NewFosterFamily />)
+
+	await wrapper.instance().onFormSubmit({name: 'Bob', active: true})
+	wrapper.update()
+
+	expect(wrapper.contains(errorMessage)).toEqual(true)
+})

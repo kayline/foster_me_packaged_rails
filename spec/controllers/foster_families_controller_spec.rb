@@ -115,6 +115,13 @@ RSpec.describe FosterFamiliesController do
 				expect(family.user).to eq user
 				expect(family.active).to eq false
 			end
+
+			it 'returns the model errors if the create does not succeed' do
+				get :create, params: {name: 'New Fam'}
+
+				expect(response.status).to eq 400
+				expect(JSON.parse(response.body)['errors']).to eq ["Currently Fostering status is required"]
+			end
 		end
 	end
 end
