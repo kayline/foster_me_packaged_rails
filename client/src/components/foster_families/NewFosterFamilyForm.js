@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-import { Header, Form, Button } from 'semantic-ui-react'
+import { Form, Button } from 'semantic-ui-react'
 
 class NewFosterFamilyForm extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
 			family: {
+				active: true
 			}
 		}
 	}
@@ -35,8 +36,8 @@ class NewFosterFamilyForm extends Component {
 		      <label>Family Name</label>
 		      <input onChange={this.onFormChange} name="name" className="name" placeholder='Family Name' />
 		    </Form.Field>
-		    <Form.Field onChange={this.onFormChange} control="input" type="checkbox" name="active" className="active" label='Currently Fostering' />
-		    <Button type='submit'>Submit</Button>
+		    <Form.Field onChange={this.onFormChange} checked={this.state.family.active} control="input" type="checkbox" name="active" className="active" label='Currently Fostering' />
+		    <Button primary type='submit'>Submit</Button>
 			</Form>
 		)
 	}

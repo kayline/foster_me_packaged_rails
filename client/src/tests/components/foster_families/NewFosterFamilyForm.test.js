@@ -13,12 +13,18 @@ afterEach(() => {
 	
 })
 
-it('loads the page', () => {
+it('loads the form', () => {
 	const wrapper = shallow(<NewFosterFamilyForm handleSubmit={handleSubmitSpy} />)
 
-	const submitButton = <Button type='submit'>Submit</Button>
+	const submitButton = <Button primary type='submit'>Submit</Button>
 
 	expect(wrapper.contains(submitButton)).toEqual(true)
+})
+
+it('sets active to true by default', () => {
+	const wrapper = shallow(<NewFosterFamilyForm handleSubmit={handleSubmitSpy} />)
+
+	expect(wrapper.state('family')).toEqual({ active: true })
 })
 
 it('sets form values on the state when changed', () => {
