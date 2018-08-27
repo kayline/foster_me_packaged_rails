@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List, Header } from 'semantic-ui-react'
+import { List, Header, Button } from 'semantic-ui-react'
 import PageHeader from '../../shared/PageHeader.js'
 import FosterFamilyListItem from './FosterFamilyListItem.js';
 
@@ -38,7 +38,8 @@ class FosterFamilyList extends Component {
 		if(this.state.fetchComplete && this.noFostersFound()) {
 			return (
 				<div className="no-families-message">
-					<Header size="medium">Oops! Looks like you don't have any foster families in our system</Header>
+					<Header size="medium">Oops! Looks like you don't have any foster families in our system.</Header>
+					<Button primary className="new-family-button"><a href="/foster-families/new">Add A Foster Family</a></Button>
 				</div>
 			)
 		} else if(this.state.fetchComplete) {
@@ -68,7 +69,8 @@ class FosterFamilyList extends Component {
 	}
 
 	noFostersFound() {
-		return this.state.activeFosterFamilies.length === 0 && this.state.completedFosterFamilies.length === 0
+		return this.state.activeFosterFamilies.length === 0 
+			&& this.state.completedFosterFamilies.length === 0
 	}
 
 	render() {
