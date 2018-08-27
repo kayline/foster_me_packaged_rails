@@ -23,7 +23,6 @@ class FosterFamiliesController < ApiController
 			@family.save!
 			render status: 201
 		else
-			puts @family.errors.full_messages
 			render json: {errors: @family.errors.full_messages}, status: 400
 		end
 	end
