@@ -5,3 +5,10 @@
   left: 20px;
   bottom: 20px;
 }
+
+.error {
+	background-color: #F87682;
+	color: white;
+	border: 1px solid #B00E1D;
+	border-radius: 5px;
+}

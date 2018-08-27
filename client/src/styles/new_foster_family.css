@@ -4,3 +4,8 @@
 	margin-left: auto;
 	margin-right: auto;
 }
+
+.create-family-error{
+	height: 40px;
+	line-height: 40px;
+}
