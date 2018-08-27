@@ -99,4 +99,22 @@ RSpec.describe FosterFamiliesController do
 			end
 		end
 	end
+
+	describe 'create' do
+		describe 'when the user is logged in' do
+
+			before do
+				sign_in user
+			end
+
+			it 'creates a new foster family for the current user' do
+				get :create, params: {name: 'New Fam', active: false}
+
+				expect(response.status).to eq 201
+				family = FosterFamily.find_by(name: 'New Fam')
+				expect(family.user).to eq user
+				expect(family.active).to eq false
+			end
+		end
+	end
 end

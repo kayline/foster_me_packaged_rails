@@ -33,7 +33,7 @@ it('sets form values on the state when changed', () => {
 })
 
 it('sends the family params to the api on submit', () => {
-	fetchMock.post('/api/foster-families/create', 201)
+	fetchMock.post('/api/foster_families', 201)
 	const wrapper = shallow(<NewFosterFamily />)
 
 	wrapper.find('input.name').simulate('change', { target: {name: 'name', value: 'Bob'}})
@@ -44,7 +44,7 @@ it('sends the family params to the api on submit', () => {
 
 	wrapper.find(Form).simulate('submit')
 
-	expect(fetchMock.lastCall()[0]).toEqual('/api/foster-families/create')
-	expect(fetchMock.lastCall()[1].body).toEqual({name: 'Bob', active: true})
+	expect(fetchMock.lastCall()[0]).toEqual('/api/foster_families')
+	expect(fetchMock.lastCall()[1].body).toEqual(JSON.stringify({name: 'Bob', active: true}))
 	expect(fetchMock.lastCall()[1].method).toEqual('post')
 })

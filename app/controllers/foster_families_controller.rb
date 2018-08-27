@@ -16,4 +16,15 @@ class FosterFamiliesController < ApiController
 			render json: {errors: ['Family not found']}, status: 404
 		end
 	end
+
+	def create
+		@family = FosterFamily.create!(permitted_params)
+		render status: 201
+	end
+
+	private
+
+	def permitted_params
+		params.permit(:name, :active).merge!({user_id: current_user.id})
+	end
 end

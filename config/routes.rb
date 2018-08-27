@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   
 	resource :api do
-  	resources :foster_families, only: [:index, :show]
+  	resources :foster_families, only: [:index, :show, :create]
   	resource :current_user, only: [:show]
   end
 

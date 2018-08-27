@@ -26,7 +26,8 @@ class NotFound extends Component {
 	}
 
 	onFormSubmit = () => {
-		return fetch('/api/foster-families/create', {method: 'post', body: this.state.family})
+		const headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
+		return fetch('/api/foster_families', {method: 'post', headers: headers, body: JSON.stringify(this.state.family)})
 	}
 
 	render() {
