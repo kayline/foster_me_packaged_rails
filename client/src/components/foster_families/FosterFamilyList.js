@@ -39,7 +39,7 @@ class FosterFamilyList extends Component {
 		if(this.state.fetchComplete && this.noFostersFound()) {
 			return (
 				<div className="no-families-message">
-					<Header size="medium">Oops! Looks like you don't have any foster families in our system.</Header>
+					<Header size="medium">Looks like you don't have any foster families in our system. Add a family now to get started!</Header>
 				</div>
 			)
 		} else if(this.state.fetchComplete) {
