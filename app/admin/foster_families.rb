@@ -1,3 +1,3 @@
 ActiveAdmin.register FosterFamily do
-	permit_params :name, :active
+	permit_params :name, :active, :user_id
 end

@@ -5,4 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :foster_families
+
+  def to_s
+  	self.email
+  end
 end
