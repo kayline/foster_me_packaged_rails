@@ -34,7 +34,7 @@ en:
   activerecord:
     attributes:
       foster_family:
-        active: "Currently Fostering status"
+        active: "Currently Fostering Status"
     errors:
       models:
         foster_family:

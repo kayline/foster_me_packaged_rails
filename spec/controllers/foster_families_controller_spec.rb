@@ -120,7 +120,7 @@ RSpec.describe FosterFamiliesController do
 				get :create, params: {name: 'New Fam'}
 
 				expect(response.status).to eq 400
-				expect(JSON.parse(response.body)['errors']).to eq ["Currently Fostering status is required"]
+				expect(JSON.parse(response.body)['errors']).to eq ["Currently Fostering Status is required"]
 			end
 		end
 	end
