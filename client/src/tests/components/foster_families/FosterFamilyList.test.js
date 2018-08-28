@@ -39,14 +39,3 @@ it('renders a message if user has no families', async () => {
 	
 	expect(wrapper.find('.no-families-message').length).toEqual(1)
 })
-
-it('includes a link to add a new family if none exist', async () => {
-	fetchMock.get('/api/foster_families', {status: 200, body: []})
-
-  const wrapper = shallow(<FosterFamilyList />);
-  await wrapper.instance().componentDidMount()
-  wrapper.update()
-
-  const newFamilyButton = wrapper.find('.new-family-button').first()
-	expect(newFamilyButton.children().first().props().href).toEqual('/foster-families/new')
-})

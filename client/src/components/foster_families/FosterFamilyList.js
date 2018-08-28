@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import { List, Header, Button } from 'semantic-ui-react'
+import React, { Component } from 'react'
+import { List, Header } from 'semantic-ui-react'
 import PageHeader from '../../shared/PageHeader.js'
-import FosterFamilyListItem from './FosterFamilyListItem.js';
+import FosterFamilyListItem from './FosterFamilyListItem.js'
+import FosterFamilyActionBar from './FosterFamilyActionBar.js'
 
 class FosterFamilyList extends Component {
 	constructor(props) {
@@ -39,7 +40,6 @@ class FosterFamilyList extends Component {
 			return (
 				<div className="no-families-message">
 					<Header size="medium">Oops! Looks like you don't have any foster families in our system.</Header>
-					<Button primary className="new-family-button"><a href="/foster-families/new">Add A Foster Family</a></Button>
 				</div>
 			)
 		} else if(this.state.fetchComplete) {
@@ -77,6 +77,7 @@ class FosterFamilyList extends Component {
 		return (
 			<div>
 				<PageHeader/>
+				<FosterFamilyActionBar />
 				<div className="families-container">
 					{this.getLists()}
 				</div>
