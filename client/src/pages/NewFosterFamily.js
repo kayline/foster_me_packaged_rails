@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Header } from 'semantic-ui-react'
+import { withRouter } from "react-router-dom"
 import PageHeader from '../shared/PageHeader.js'
 import NewFosterFamilyForm from '../components/foster_families/NewFosterFamilyForm.js'
 
@@ -31,12 +32,15 @@ class NewFosterFamily extends Component {
 		const headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
 		return fetch('/api/foster_families', {method: 'post', headers: headers, body: JSON.stringify(familyData)})
 					 .then(response => this.handleErrors(response))
+					 .then(response => this.props.history.push('/'))
+					 .catch(error => null)
 	}
 
 	handleErrors(response) {
     if (!response.ok) {
-    	return response.json()
+    	response.json()
     	.then(result => this.setState({errors: result.errors}))
+    	throw Error('Error while creating family')
     }
     return response
 	}
@@ -64,4 +68,4 @@ class NewFosterFamily extends Component {
 	}
 }
 
-export default NewFosterFamily
+export default withRouter(NewFosterFamily)
