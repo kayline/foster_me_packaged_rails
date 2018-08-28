@@ -3,15 +3,18 @@
   color: white;
   padding: 11px 20px 11px 20px;
   margin-bottom: 20px;
+  height: 95px;
 }
 
 .app-logo-header {
-	margin-top: 4px;
+	margin-top: 7px;
 	height: 60px;
 	width: 60px;
+	float: left;
+	display: inline-block;
 }
 
 .ui.primary.button.sign-out {
-	margin-top: 17px;
+	margin-top: 19px;
 	float: right;
 }
