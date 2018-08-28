@@ -9,6 +9,13 @@
   </head>
 
   <body>
+    <header><%= @controller.to_s %></header>
+  	<header class="rails-views-header">
+    	<img class="logo" src="/images/paw_logo_white.svg"/>
+  	</header>
+  	<% if alert %>
+  		<p class="ui error message"><%= alert %></p>
+		<% end %>
     <%= yield %>
   </body>
 </html>
