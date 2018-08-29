@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Form, Button } from 'semantic-ui-react'
+import { Form, Button, Header } from 'semantic-ui-react'
+import AnimalFormFields from '../animals/AnimalFormFields.js'
 
 class NewFosterFamilyForm extends Component {
 	constructor(props) {
@@ -11,7 +12,7 @@ class NewFosterFamilyForm extends Component {
 		}
 	}
 
-	onFormChange = (event) => {
+	handleFamilyFieldChanged = (event) => {
 	const family = this.state.family
 	var newValues = {}
 
@@ -25,6 +26,12 @@ class NewFosterFamilyForm extends Component {
 		this.setState({family: updatedFamily})
 	}
 
+	handleAnimalFieldChanged = (animal) => {
+		const family = this.state.family
+		family.animals = [animal]
+		this.setState({family: family})
+	}
+
 	onFormSubmit = () => {
 		this.props.handleSubmit(this.state.family)
 	}
@@ -34,10 +41,12 @@ class NewFosterFamilyForm extends Component {
 			<Form className="new-family-form" onSubmit={this.onFormSubmit}>
 		    <Form.Field>
 		      <label>Family Name</label>
-		      <input onChange={this.onFormChange} name="name" className="name" placeholder='Family Name' />
+		      <input onChange={this.handleFamilyFieldChanged} name="name" className="family-name" placeholder='Family Name' />
 		    </Form.Field>
-		    <Form.Field onChange={this.onFormChange} checked={this.state.family.active} control="input" type="checkbox" name="active" className="active" label='Currently Fostering' />
-		    <Button primary type='submit'>Submit</Button>
+		    <Form.Field onChange={this.handleFamilyFieldChanged} checked={this.state.family.active} control="input" type="checkbox" name="active" className="active" label='Currently Fostering' />
+	    	<Header size="small">Animals in the Family</Header>
+		    <AnimalFormFields key={1} animalKey={1} onChange={this.handleAnimalFieldChanged} />
+		    <Button className="new-family-submit" primary type='submit'>Submit</Button>
 			</Form>
 		)
 	}
