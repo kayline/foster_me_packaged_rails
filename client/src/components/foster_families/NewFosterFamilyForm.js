@@ -12,14 +12,14 @@ class NewFosterFamilyForm extends Component {
 		}
 	}
 
-	handleFamilyFieldChanged = (event) => {
-	const family = this.state.family
-	var newValues = {}
+	handleFamilyFieldChanged = (event, {name, value, type, checked}) => {
+		const family = this.state.family
+		var newValues = {}
 
-		if(event.target.type === "checkbox") {
-			newValues[event.target.name] = event.target.checked
+		if(type === "checkbox") {
+			newValues[name] = checked
 		} else {
-			newValues[event.target.name] = event.target.value
+			newValues[name] = value
 		}
 
 		const updatedFamily = {...family, ...newValues}
@@ -40,7 +40,7 @@ class NewFosterFamilyForm extends Component {
 		return (
 			<Form className="new-family-form" onSubmit={this.onFormSubmit}>
 		    <Form.Input onChange={this.handleFamilyFieldChanged} label="Family Name" name="name" className="family-name" placeholder='Family Name' />
-		    <Form.Field onChange={this.handleFamilyFieldChanged} checked={this.state.family.active} control="input" type="checkbox" name="active" className="active" label='Currently Fostering' />
+		    <Form.Checkbox onChange={this.handleFamilyFieldChanged} checked={this.state.family.active} name="active" className="active" label='Currently Fostering' />
 	    	<Header size="small">Animals in the Family</Header>
 		    <AnimalFormFields key={1} animalKey={1} onChange={this.handleAnimalFieldChanged} />
 		    <Button className="new-family-submit" primary type='submit'>Submit</Button>

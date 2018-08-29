@@ -39,12 +39,12 @@ it('sets active to true by default', () => {
 it('sets form values on the state when changed', () => {
 	const checkbox = wrapper.find('.active')
 	
-	wrapper.find('.family-name').simulate('change', { target: {name: 'name', value: 'Bob'}})
-	checkbox.simulate('change', { target: {name: 'active', checked: true, type: 'checkbox'}})
+	wrapper.find('.family-name').simulate('change', {}, {name: 'name', value: 'Bob'})
+	checkbox.simulate('change', {}, {name: 'active', checked: true, type: 'checkbox'})
 
 	expect(wrapper.state('family')).toEqual({name: 'Bob', active: true})
 
-	checkbox.simulate('change', { target: {name: 'active', checked: false, type: 'checkbox'}})
+	checkbox.simulate('change', {}, {name: 'active', checked: false, type: 'checkbox'})
 
 	expect(wrapper.state('family')).toEqual({name: 'Bob', active: false})
 })
@@ -56,9 +56,9 @@ it('updates the family state with animal info when the handleAnimalFieldChanged 
 })
 
 it('calls handleSubmit with the family data on submit', () => {
-	wrapper.find('.family-name').simulate('change', { target: {name: 'name', value: 'Best Family'}})
+	wrapper.find('.family-name').simulate('change', {}, {name: 'name', value: 'Best Family'})
 	const checkbox = wrapper.find('.active')
-	checkbox.simulate('change', { target: {name: 'active', checked: true, type: 'checkbox'}})
+	checkbox.simulate('change', {}, {name: 'active', checked: true, type: 'checkbox'})
 
 	const submitButton = wrapper.find(Button).at(0).dive().find('button[type="submit"]')
 
