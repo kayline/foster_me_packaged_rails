@@ -39,21 +39,18 @@ it('sets the animalKey prop on the animal state', () => {
 })
 
 it('updates the state when a field is changed', () => {
-	const nameField = wrapper.find(Form.Input).find('.animal-name')
-
-	nameField.simulate('change', {}, {name: 'name', value: 'Bob'})
+	wrapper.find('.animal-name').simulate('change', {}, {name: 'name', value: 'Bob'})
 	expect(wrapper.state('animal')).toEqual({key: 1, name: 'Bob'})
 
-	wrapper.find(Form.TextArea).find('.animal-description').simulate('change', {}, {name: 'description', value: 'Adorkable'})
+	wrapper.find('.animal-description').simulate('change', {}, {name: 'description', value: 'Adorkable'})
 	expect(wrapper.state('animal')).toEqual({key: 1, name: 'Bob', description: 'Adorkable'})
 
-	wrapper.find(Form.Select).find('.animal-sex').simulate('change', {}, {name: 'sex', value: 'Male'})
+	wrapper.find('.animal-sex').simulate('change', {}, {name: 'sex', value: 'Male'})
 	expect(wrapper.state('animal')).toEqual({key: 1, name: 'Bob', description: 'Adorkable', sex: 'Male'})
 })
 
 it('calls the parent onChange function with new state when a field is changed', () => {
-	const nameField = wrapper.find(Form.Input).find('.animal-name')
-
-	nameField.simulate('change', {}, {name: 'name', value: 'Bob'})
+	wrapper.find('.animal-name').simulate('change', {}, {name: 'name', value: 'Bob'})
+	
 	expect(fakeOnChange).toHaveBeenCalledWith({key: 1, name: 'Bob'})
 })

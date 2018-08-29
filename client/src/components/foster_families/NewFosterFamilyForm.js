@@ -39,10 +39,7 @@ class NewFosterFamilyForm extends Component {
 	render() {
 		return (
 			<Form className="new-family-form" onSubmit={this.onFormSubmit}>
-		    <Form.Field>
-		      <label>Family Name</label>
-		      <input onChange={this.handleFamilyFieldChanged} name="name" className="family-name" placeholder='Family Name' />
-		    </Form.Field>
+		    <Form.Input onChange={this.handleFamilyFieldChanged} label="Family Name" name="name" className="family-name" placeholder='Family Name' />
 		    <Form.Field onChange={this.handleFamilyFieldChanged} checked={this.state.family.active} control="input" type="checkbox" name="active" className="active" label='Currently Fostering' />
 	    	<Header size="small">Animals in the Family</Header>
 		    <AnimalFormFields key={1} animalKey={1} onChange={this.handleAnimalFieldChanged} />
