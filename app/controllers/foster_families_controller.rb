@@ -18,7 +18,10 @@ class FosterFamiliesController < ApiController
 	end
 
 	def create
-		@family = FosterFamily.new(permitted_params)
+		@family = FosterFamily.new(family_params)
+		@animals = animals_params.map { |attrs| Animal.new(attrs) }
+		@family.animals = @animals
+
 		if(@family.valid?)
 			@family.save!
 			render status: 201
@@ -29,7 +32,16 @@ class FosterFamiliesController < ApiController
 
 	private
 
-	def permitted_params
-		params.permit(:name, :active).merge!({user_id: current_user.id})
+	def family_params
+		params.permit(:name, :active, :animals).merge!({user_id: current_user.id})
+	end
+
+	def animals_params
+		animals = params.permit(animals: [:name, :sex, :description, :date_of_birth])['animals']
+		if animals.present?
+			animals
+		else
+			[]
+		end
 	end
 end

@@ -108,7 +108,7 @@ RSpec.describe FosterFamiliesController do
 			end
 
 			it 'creates a new foster family for the current user' do
-				get :create, params: {name: 'New Fam', active: false}
+				get :create, params: {name: 'New Fam', active: false, animals: []}
 
 				expect(response.status).to eq 201
 				family = FosterFamily.find_by(name: 'New Fam')
@@ -117,10 +117,25 @@ RSpec.describe FosterFamiliesController do
 			end
 
 			it 'returns the model errors if the create does not succeed' do
-				get :create, params: {name: 'New Fam'}
+				get :create, params: {name: 'New Fam', animals: []}
 
 				expect(response.status).to eq 400
 				expect(JSON.parse(response.body)['errors']).to eq ["Currently Fostering Status is required"]
+			end
+
+			it 'creates animals in the family if provided' do
+				pacific_timezone = ActiveSupport::TimeZone.new("Pacific Time (US & Canada)")
+				now = DateTime.parse('2018-01-01').in_time_zone(pacific_timezone)
+				get :create, params: {name: 'New Fam', active: false, animals: [{name: 'Baby Cat', sex: 'Female', description: 'Tiny', date_of_birth: now}]}
+
+
+				expect(response.status).to eq 201
+				family = FosterFamily.find_by(name: 'New Fam')
+				animal = Animal.find_by(name: 'Baby Cat')
+				expect(animal.sex).to eq 'Female'
+				expect(animal.description).to eq 'Tiny'
+				expect(animal.date_of_birth.in_time_zone(pacific_timezone)).to eq now
+				expect(family.animals).to eq [animal]
 			end
 		end
 	end
