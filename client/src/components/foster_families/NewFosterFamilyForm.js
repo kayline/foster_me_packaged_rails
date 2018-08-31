@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import moment from 'moment'
 import { Form, Button, Header } from 'semantic-ui-react'
 import AnimalFormFields from '../animals/AnimalFormFields.js'
+const DEFAULT_DATE_OF_BIRTH = moment().startOf('year')
 
 class NewFosterFamilyForm extends Component {
 	constructor(props) {
@@ -8,7 +10,7 @@ class NewFosterFamilyForm extends Component {
 		this.state = {
 			family: {
 				active: true,
-				animals: [{key: 1}]
+				animals: [{key: 1, date_of_birth: DEFAULT_DATE_OF_BIRTH}]
 			},
 			animalCount:1
 		}
@@ -39,7 +41,8 @@ class NewFosterFamilyForm extends Component {
 
 	addEmptyAnimal = () => {
 		const nextAnimalKey = this.state.animalCount + 1
-		const updatedAnimals = [...this.state.family.animals, {key: nextAnimalKey}]
+		const newAnimal = {key: nextAnimalKey, date_of_birth: DEFAULT_DATE_OF_BIRTH}
+		const updatedAnimals = [...this.state.family.animals, newAnimal]
 		const updatedFamily = {...this.state.family, ...{animals: updatedAnimals}}
 		this.setState({family: updatedFamily, animalCount: nextAnimalKey})
 	}
