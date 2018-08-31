@@ -58,7 +58,7 @@ class NewFosterFamilyForm extends Component {
 		    <Form.Checkbox onChange={this.handleFamilyFieldChanged} checked={this.state.family.active} name="active" className="active" label='Currently Fostering' />
 	    	<Header size="small">Animals in the Family</Header>
 	    	{this.state.family.animals.map(animal => {
-	    		return <AnimalFormFields className="animal-form-fields" key={animal.key} animalKey={animal.key} onChange={this.handleAnimalFieldChanged} />
+	    		return <AnimalFormFields className="animal-form-fields" key={animal.key} animal={animal} onChange={this.handleAnimalFieldChanged} />
 	    	})}
 		    
 		    <Button className="add-animal-button" type="button" onClick={this.addEmptyAnimal} >Add Another Animal</Button>

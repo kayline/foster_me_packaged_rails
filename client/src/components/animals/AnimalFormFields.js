@@ -1,18 +1,13 @@
 import React, { Component } from 'react'
-import moment from 'moment'
 import { Form } from 'semantic-ui-react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-const DEFAULT_DATE_OF_BIRTH = moment().startOf('year')
 
 class AnimalFormFields extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			animal: {
-				key: props.animalKey,
-				date_of_birth: DEFAULT_DATE_OF_BIRTH
-			}
+			animal: props.animal
 		}
 	}
 

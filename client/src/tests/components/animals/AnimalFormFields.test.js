@@ -4,12 +4,13 @@ import moment from 'moment'
 import DatePicker from 'react-datepicker'
 import AnimalFormFields from '../../../components/animals/AnimalFormFields.js'
 import { Form } from 'semantic-ui-react'
-var fakeOnChange, wrapper, defaultDOB
+var fakeOnChange, wrapper, defaultDOB, emptyAnimal
 
 beforeEach(() => {
 	defaultDOB = moment().startOf('year')
 	fakeOnChange = jest.fn()
-	wrapper = shallow(<AnimalFormFields onChange={fakeOnChange} animalKey={1}/>)
+	emptyAnimal = {key: 1, date_of_birth: defaultDOB}
+	wrapper = shallow(<AnimalFormFields onChange={fakeOnChange} animal={emptyAnimal}/>)
 })
 
 it('renders all the fields for an animal', () => {
