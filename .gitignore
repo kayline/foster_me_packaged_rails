@@ -31,3 +31,4 @@
 
 #So I can work with a build version locally without committing it
 /public
+/node_modules/
