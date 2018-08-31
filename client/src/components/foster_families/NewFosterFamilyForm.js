@@ -7,8 +7,10 @@ class NewFosterFamilyForm extends Component {
 		super(props)
 		this.state = {
 			family: {
-				active: true
-			}
+				active: true,
+				animals: [{key: 1}]
+			},
+			animalCount:1
 		}
 	}
 
@@ -27,9 +29,19 @@ class NewFosterFamilyForm extends Component {
 	}
 
 	handleAnimalFieldChanged = (animal) => {
-		const family = this.state.family
-		family.animals = [animal]
-		this.setState({family: family})
+		const existingAnimal = this.state.family.animals.find(a => a.key === animal.key)
+		
+		const updatedAnimal = {...existingAnimal, ...animal}
+		const updatedAnimals = this.state.family.animals.map(function(animal) { return animal === existingAnimal ? updatedAnimal : animal })
+		const updatedFamily = {...this.state.family, ...{animals: updatedAnimals}}
+		this.setState({family: updatedFamily})
+	}
+
+	addEmptyAnimal = () => {
+		const nextAnimalKey = this.state.animalCount + 1
+		const updatedAnimals = [...this.state.family.animals, {key: nextAnimalKey}]
+		const updatedFamily = {...this.state.family, ...{animals: updatedAnimals}}
+		this.setState({family: updatedFamily, animalCount: nextAnimalKey})
 	}
 
 	onFormSubmit = () => {
@@ -42,7 +54,11 @@ class NewFosterFamilyForm extends Component {
 		    <Form.Input onChange={this.handleFamilyFieldChanged} label="Family Name" name="name" className="family-name" placeholder='Family Name' />
 		    <Form.Checkbox onChange={this.handleFamilyFieldChanged} checked={this.state.family.active} name="active" className="active" label='Currently Fostering' />
 	    	<Header size="small">Animals in the Family</Header>
-		    <AnimalFormFields key={1} animalKey={1} onChange={this.handleAnimalFieldChanged} />
+	    	{this.state.family.animals.map(animal => {
+	    		return <AnimalFormFields className="animal-form-fields" key={animal.key} animalKey={animal.key} onChange={this.handleAnimalFieldChanged} />
+	    	})}
+		    
+		    <Button className="add-animal-button" type="button" onClick={this.addEmptyAnimal} >Add Another Animal</Button>
 		    <Button className="new-family-submit" primary type='submit'>Submit</Button>
 			</Form>
 		)

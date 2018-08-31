@@ -49,8 +49,8 @@ it('updates the state when a field is changed', () => {
 	expect(wrapper.state('animal')).toEqual({key: 1, name: 'Bob', description: 'Adorkable', sex: 'Male'})
 })
 
-it('calls the parent onChange function with new state when a field is changed', () => {
+it('calls the parent onChange function with new state and key prop when a field is changed', () => {
 	wrapper.find('.animal-name').simulate('change', {}, {name: 'name', value: 'Bob'})
-	
+
 	expect(fakeOnChange).toHaveBeenCalledWith({key: 1, name: 'Bob'})
 })
