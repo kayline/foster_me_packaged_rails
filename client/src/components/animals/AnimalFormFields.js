@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form } from 'semantic-ui-react'
+import { Form, Divider } from 'semantic-ui-react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 
@@ -35,6 +35,7 @@ class AnimalFormFields extends Component {
 
 		return (
 			<div className="nested-form-fields-container nested-animal-fields">
+				<Divider horizontal>{'Animal ' + this.state.animal.key}</Divider>
 		    <Form.Input onChange={this.onFieldChange} name="name" className="animal-name" label="Animal Name" placeholder='Animal Name' />
 		    <Form.TextArea onChange={this.onFieldChange} label="Description" placeholder='What does this critter look like?' name="description" className="animal-description"/>
 	    	<Form.Select onChange={this.onFieldChange} label="Sex" options={sexOptions} placeholder="Sex" name="sex" className="animal-sex" />

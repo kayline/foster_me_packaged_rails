@@ -72,7 +72,7 @@ class NewFosterFamily extends Component {
 					{this.renderFamilyErrors()}
 					{this.renderAnimalsErrors()}
 					<Header size="large">Add Your Foster Family</Header>
-					<img src="/images/upside-down-cat.jpg" alt="excited-cat"/>
+					<img className="new-family-image" src="/images/upside-down-cat.jpg" alt="excited-cat"/>
 					<NewFosterFamilyForm handleSubmit={this.onFormSubmit} />
 				</div>
 			</div>

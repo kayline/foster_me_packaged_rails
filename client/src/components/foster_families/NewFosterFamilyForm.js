@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import moment from 'moment'
-import { Form, Button, Header } from 'semantic-ui-react'
+import { Form, Button, Header, Divider } from 'semantic-ui-react'
 import AnimalFormFields from '../animals/AnimalFormFields.js'
 const DEFAULT_DATE_OF_BIRTH = moment().startOf('year')
 
@@ -56,12 +56,13 @@ class NewFosterFamilyForm extends Component {
 			<Form className="new-family-form" onSubmit={this.onFormSubmit}>
 		    <Form.Input onChange={this.handleFamilyFieldChanged} label="Family Name" name="name" className="family-name" placeholder='Family Name' />
 		    <Form.Checkbox onChange={this.handleFamilyFieldChanged} checked={this.state.family.active} name="active" className="active" label='Currently Fostering' />
-	    	<Header size="small">Animals in the Family</Header>
 	    	{this.state.family.animals.map(animal => {
 	    		return <AnimalFormFields className="animal-form-fields" key={animal.key} animal={animal} onChange={this.handleAnimalFieldChanged} />
 	    	})}
-		    
-		    <Button className="add-animal-button" type="button" onClick={this.addEmptyAnimal} >Add Another Animal</Button>
+		    <div>
+		    	<Button className="add-animal-button" type="button" onClick={this.addEmptyAnimal} >Add Another Animal</Button>
+		    </div>
+		    <Divider horizontal>Or</Divider>
 		    <Button className="new-family-submit" primary type='submit'>Submit</Button>
 			</Form>
 		)
