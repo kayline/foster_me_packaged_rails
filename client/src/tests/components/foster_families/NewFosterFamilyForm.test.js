@@ -8,9 +8,13 @@ import AnimalFormFields from '../../../components/animals/AnimalFormFields.js'
 var handleSubmitSpy, wrapper, defaultDOB
 
 beforeEach(() => {
+	const emptyErrors = {
+		animals: [],
+		family: []
+	}
 	defaultDOB = moment().startOf('year')
 	handleSubmitSpy = jest.fn()
-	wrapper = shallow(<NewFosterFamilyForm handleSubmit={handleSubmitSpy} />)
+	wrapper = shallow(<NewFosterFamilyForm handleSubmit={handleSubmitSpy} errors={emptyErrors}/>)
 })
 
 it('loads the form', () => {
@@ -111,4 +115,18 @@ it('calls handleSubmit with the family data on submit', () => {
 	wrapper.find(Form).simulate('submit')
 
 	expect(handleSubmitSpy).toBeCalledWith({name: 'Best Family', active: true, animals: [{key: 1, date_of_birth: moment().startOf('year')}]})
+})
+
+it('displays error messages if present', () => {
+	const errors = {
+		family: ['Active field cannot be blank', 'Some other problem'],
+		animals: ['Description is required', 'Animals this cute are not permitted']
+	}
+	const familyErrorMessage = <div className="error create-family-error">Family: Active field cannot be blank, Some other problem</div>
+	const animalsErrorMessage = <div className="error create-animals-error">Animals: Description is required, Animals this cute are not permitted</div>
+	
+	wrapper = shallow(<NewFosterFamilyForm handleSubmit={handleSubmitSpy} errors={errors}/>)
+
+	expect(wrapper.contains(familyErrorMessage)).toEqual(true)
+	expect(wrapper.contains(animalsErrorMessage)).toEqual(true)
 })

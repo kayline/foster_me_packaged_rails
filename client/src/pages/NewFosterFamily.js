@@ -48,32 +48,16 @@ class NewFosterFamily extends Component {
     return response
 	}
 
-	renderFamilyErrors() {
-		if(this.state.errors.family.length > 0) {
-			return (
-				<div className="error create-family-error">{"Family: " + this.state.errors.family.join(', ')}</div>
-			)
-		}
-	}
-
-	renderAnimalsErrors() {
-		if(this.state.errors.animals.length > 0) {
-			return (
-				<div className="error create-animals-error">{"Animals: " + this.state.errors.animals.join(', ')}</div>
-			)
-		}
-	}
+	
 
 	render() {
 		return (
 			<div className="new-foster-family">
 				<PageHeader />
 				<div className="container new-foster-family-container">
-					{this.renderFamilyErrors()}
-					{this.renderAnimalsErrors()}
 					<Header size="large">Add Your Foster Family</Header>
 					<img className="new-family-image" src="/images/upside-down-cat.jpg" alt="excited-cat"/>
-					<NewFosterFamilyForm handleSubmit={this.onFormSubmit} />
+					<NewFosterFamilyForm handleSubmit={this.onFormSubmit} errors={this.state.errors}/>
 				</div>
 			</div>
 		)
