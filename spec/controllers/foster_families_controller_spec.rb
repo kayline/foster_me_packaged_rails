@@ -101,6 +101,9 @@ RSpec.describe FosterFamiliesController do
 	end
 
 	describe 'create' do
+		let(:pacific_timezone) { ActiveSupport::TimeZone.new("Pacific Time (US & Canada)") }
+		let(:now) { DateTime.parse('2018-01-01').in_time_zone(pacific_timezone) }
+
 		describe 'when the user is logged in' do
 
 			before do
@@ -116,16 +119,9 @@ RSpec.describe FosterFamiliesController do
 				expect(family.active).to eq false
 			end
 
-			it 'returns the model errors if the create does not succeed' do
-				get :create, params: {name: 'New Fam', animals: []}
-
-				expect(response.status).to eq 400
-				expect(JSON.parse(response.body)['errors']).to eq ["Currently Fostering Status is required"]
-			end
 
 			it 'creates animals in the family if provided' do
-				pacific_timezone = ActiveSupport::TimeZone.new("Pacific Time (US & Canada)")
-				now = DateTime.parse('2018-01-01').in_time_zone(pacific_timezone)
+				
 				get :create, params: {name: 'New Fam', active: false, animals: [{name: 'Baby Cat', sex: 'Female', description: 'Tiny', date_of_birth: now}]}
 
 
@@ -136,6 +132,24 @@ RSpec.describe FosterFamiliesController do
 				expect(animal.description).to eq 'Tiny'
 				expect(animal.date_of_birth.in_time_zone(pacific_timezone)).to eq now
 				expect(family.animals).to eq [animal]
+			end
+
+			describe 'when the family params are not valid' do
+				it 'returns the family errors' do
+					get :create, params: {name: 'New Fam', animals: []}
+
+					expect(response.status).to eq 400
+					expect(JSON.parse(response.body)['errors']['family']).to eq ["Currently Fostering Status is required"]
+				end
+			end
+
+			describe 'when one of the animals is not valid' do
+				it 'returns the family errors if the create does not succeed' do
+					get :create, params: {name: 'New Fam', animals: [{sex: 'Female', description: 'I need a name', date_of_birth: now}]}
+
+					expect(response.status).to eq 400
+					expect(JSON.parse(response.body)['errors']['animals']).to eq ["Name can't be blank"]
+				end
 			end
 		end
 	end

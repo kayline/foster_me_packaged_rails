@@ -27,18 +27,22 @@ it('sends the family data to the api on submit', () => {
 	expect(fetchMock.lastCall()[1].method).toEqual('post')
 })
 
-it('displays an error message if the create did not succeed', async () => {
-	fetchMock.post('/api/foster_families', {status: 500, body: {errors: ['Active field cannot be blank', 'Some other problem']}})
-	// const fakePush = jest.fn()
-	// const fakeHistory = {push: fakePush}
-	const errorMessage = <div className="error create-family-error">Active field cannot be blank, Some other problem</div>
+it('displays an error message if the family create did not succeed', async () => {
+	const errors = {
+		family: ['Active field cannot be blank', 'Some other problem'],
+		animals: ['Description is required', 'Animals this cute are not permitted']
+	}
+	fetchMock.post('/api/foster_families', {status: 500, body: {errors: errors}})
+	const familyErrorMessage = <div className="error create-family-error">Family: Active field cannot be blank, Some other problem</div>
+	const animalsErrorMessage = <div className="error create-animals-error">Animals: Description is required, Animals this cute are not permitted</div>
 	
 	const wrapper = shallow(<NewFosterFamily.WrappedComponent />)
 
 	await wrapper.instance().onFormSubmit({name: 'Bob', active: true})
 	wrapper.update()
 
-	expect(wrapper.contains(errorMessage)).toEqual(true)
+	expect(wrapper.contains(familyErrorMessage)).toEqual(true)
+	expect(wrapper.contains(animalsErrorMessage)).toEqual(true)
 })
 
 it('redirects to Home if the create succeeds', async () => {
