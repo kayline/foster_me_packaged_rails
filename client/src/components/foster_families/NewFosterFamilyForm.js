@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import moment from 'moment'
-import { Form, Button, Header, Divider } from 'semantic-ui-react'
+import { Form, Button, Divider } from 'semantic-ui-react'
 import AnimalFormFields from '../animals/AnimalFormFields.js'
 const DEFAULT_DATE_OF_BIRTH = moment().startOf('year')
 
