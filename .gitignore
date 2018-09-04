@@ -29,6 +29,9 @@
 /client/build/
 /client/src/.DS_Store
 
-#So I can work with a build version locally without committing it
+# So I can work with a build version locally without committing it
 /public
 /node_modules/
+
+# Development env files
+.env.*
