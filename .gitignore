@@ -28,6 +28,7 @@
 /client/node_modules/
 /client/build/
 /client/src/.DS_Store
+/client/.env
 
 # So I can work with a build version locally without committing it
 /public
