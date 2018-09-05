@@ -34,4 +34,4 @@
 /node_modules/
 
 # Development env files
-.env.*
+.env
