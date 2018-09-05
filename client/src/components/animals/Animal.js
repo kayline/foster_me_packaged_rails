@@ -6,7 +6,7 @@ import { List } from 'semantic-ui-react'
 class Animal extends Component {
 	constructor(props) {
 		super(props)
-		this.state = {image_url: `/images/${props.animal.name.toLowerCase()}.JPG`}
+		this.state = {full_image_url: process.env.REACT_APP_BASE_PHOTO_URL + props.animal.image_url}
 	}
 	
 	displayAge() {
@@ -24,7 +24,7 @@ class Animal extends Component {
 				<List.Item className="animal-list">
 					<List.Content floated="right">
 						<img 
-							src={this.state.image_url}
+							src={this.state.full_image_url}
 							floated="right" 
 							className="animal-pic" 
 							alt={this.props.animal.name} 
