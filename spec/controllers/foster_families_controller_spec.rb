@@ -111,7 +111,7 @@ RSpec.describe FosterFamiliesController do
 			end
 
 			it 'creates a new foster family for the current user' do
-				get :create, params: {name: 'New Fam', active: false, animals: []}
+				post :create, params: { family: {name: 'New Fam', active: false, animals: []}}
 
 				expect(response.status).to eq 201
 				family = FosterFamily.find_by(name: 'New Fam')
@@ -122,8 +122,13 @@ RSpec.describe FosterFamiliesController do
 
 			it 'creates animals in the family if provided' do
 				
-				get :create, params: {name: 'New Fam', active: false, animals: [{name: 'Baby Cat', sex: 'Female', description: 'Tiny', date_of_birth: now}]}
-
+				post :create, params: { 
+					family: {
+						name: 'New Fam', 
+						active: false, 
+						animals: [{name: 'Baby Cat', sex: 'Female', description: 'Tiny', date_of_birth: now}]
+					}
+				}
 
 				expect(response.status).to eq 201
 				family = FosterFamily.find_by(name: 'New Fam')
@@ -134,9 +139,29 @@ RSpec.describe FosterFamiliesController do
 				expect(family.animals).to eq [animal]
 			end
 
+			it 'adds a profile photo to the animal if provided' do
+
+				profile_photo = fixture_file_upload(Rails.root.join('spec', 'fixtures', 'files', 'what-cat.jpg'), 'image/jpeg')
+				
+				post :create, params: {
+					family: {
+						name: 'New Fam', 
+						active: false,
+						animals: [{
+							name: 'Baby Cat', 
+							profile_photo: profile_photo
+						}]
+					},
+				}
+
+				expect(response.status).to eq 201
+				animal = Animal.find_by(name: 'Baby Cat')
+				expect(animal.profile_photo.attached?).to be_truthy
+			end
+
 			describe 'when the family params are not valid' do
 				it 'returns the family errors' do
-					get :create, params: {name: 'New Fam', animals: []}
+					get :create, params: { family: {name: 'New Fam', animals: []}}
 
 					expect(response.status).to eq 400
 					expect(JSON.parse(response.body)['errors']['family']).to eq ["Currently Fostering Status is required"]
@@ -145,7 +170,7 @@ RSpec.describe FosterFamiliesController do
 
 			describe 'when one of the animals is not valid' do
 				it 'returns the family errors if the create does not succeed' do
-					get :create, params: {name: 'New Fam', animals: [{sex: 'Female', description: 'I need a name', date_of_birth: now}]}
+					get :create, params: { family: {name: 'New Fam', animals: [{sex: 'Female', description: 'I need a name', date_of_birth: now}]}}
 
 					expect(response.status).to eq 400
 					expect(JSON.parse(response.body)['errors']['animals']).to eq ["Name can't be blank"]

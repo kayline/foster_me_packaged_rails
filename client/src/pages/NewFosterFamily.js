@@ -33,7 +33,7 @@ class NewFosterFamily extends Component {
 
 	onFormSubmit = (familyData) => {
 		const headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
-		return fetch('/api/foster_families', {method: 'post', headers: headers, body: JSON.stringify(familyData)})
+		return fetch('/api/foster_families', {method: 'post', headers: headers, body: JSON.stringify({family: familyData})})
 					 .then(response => this.handleErrors(response))
 					 .then(response => this.props.history.push('/'))
 					 .catch(error => null)

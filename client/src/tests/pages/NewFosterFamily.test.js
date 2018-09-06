@@ -24,7 +24,7 @@ it('sends the family data to the api on submit', () => {
 	wrapper.instance().onFormSubmit({name: 'Bob', active: true})
 
 	expect(fetchMock.lastCall()[0]).toEqual('/api/foster_families')
-	expect(fetchMock.lastCall()[1].body).toEqual(JSON.stringify({name: 'Bob', active: true}))
+	expect(fetchMock.lastCall()[1].body).toEqual(JSON.stringify({family: {name: 'Bob', active: true}}))
 	expect(fetchMock.lastCall()[1].method).toEqual('post')
 })
 
