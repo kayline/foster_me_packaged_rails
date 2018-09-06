@@ -8,27 +8,11 @@ class NewFosterFamily extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			family: {
-			},
 			errors: {
 				family: [],
 				animals: []
 			}
 		}
-	}
-
-	onFormChange = (event) => {
-		const family = this.state.family
-		var newValues = {}
-
-		if(event.target.type === "checkbox") {
-			newValues[event.target.name] = event.target.checked
-		} else {
-			newValues[event.target.name] = event.target.value
-		}
-
-		const updatedFamily = {...family, ...newValues}
-		this.setState({family: updatedFamily})
 	}
 
 	onFormSubmit = (familyData) => {
