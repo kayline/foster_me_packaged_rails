@@ -20,8 +20,7 @@ it('renders the label facade with given props', () => {
 })
 
 it('sets the initial file state', () => {
-	expect(wrapper.state('uploading')).toEqual(false)
-	expect(wrapper.state('uploaded')).toEqual(false)
+	expect(wrapper.state('loading')).toEqual(false)
 	expect(wrapper.state('placeholder')).toEqual("Upload a Photo")
 	expect(wrapper.state('filename')).toEqual("")
 })
@@ -45,6 +44,20 @@ it('calls click on the hidden input when the icon is clicked', () => {
 	mountedWrapper.unmount()
 })
 
+it('does not open the file input if a file is already loading', () => {
+	const mountedWrapper = mount(<FileUploadFormField onChange={fakeOnChange} />)
+	const fileInput = mountedWrapper.ref('fileInput')
+	const fakeInputClick = jest.fn()
+	mountedWrapper.setState({loading: true})
+
+	fileInput.click = fakeInputClick
+
+	mountedWrapper.find('.select-file-trigger').simulate('click')
+
+	expect(fakeInputClick).not.toHaveBeenCalled()
+	mountedWrapper.unmount()
+})
+
 it('calls onFileSelected when the file input changes', () => {
 	const fakeOnFileSelected = jest.fn()
 	wrapper.instance().onFileSelected = fakeOnFileSelected
@@ -61,7 +74,7 @@ it('calls onFileSelected when the file input changes', () => {
 	expect(fakeOnFileSelected).toHaveBeenCalledWith(fileSelectionEvent)
 })
 
-it('sets uploading state when file is selected', () => {
+it('sets loading state when file is selected', () => {
 	const file = new window.File([''], 'filename.txt', {
       type: 'text/plain',
       lastModified: new Date()
@@ -74,7 +87,7 @@ it('sets uploading state when file is selected', () => {
 	}
 
 	wrapper.instance().onFileSelected(fileSelectionEvent)
-	expect(wrapper.state('uploading')).toEqual(true)
+	expect(wrapper.state('loading')).toEqual(true)
 	expect(wrapper.state('filename')).toEqual("")
 	expect(wrapper.state('placeholder')).toEqual("Loading File...")
 })

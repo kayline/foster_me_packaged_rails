@@ -5,8 +5,7 @@ class FileUploadFormField extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			uploading: false,
-			uploaded: false,
+			loading: false,
 			filename: "", 
 			placeholder: props.placeholder
 		}
@@ -14,7 +13,7 @@ class FileUploadFormField extends Component {
 	
 	onFileSelected = (event) => {
 		this.setState({
-			uploading: true,
+			loading: true,
 			placeholder: "Loading File..."
 		})
 
@@ -23,8 +22,7 @@ class FileUploadFormField extends Component {
 
 		reader.onload = (upload) => {
 			this.setState({
-				uploading: false,
-				uploaded: true,
+				loading: false,
 				filename: file.name
 			})
       this.props.onChange({
@@ -40,7 +38,9 @@ class FileUploadFormField extends Component {
 	}
 
 	openFileSelection = () => {
-		this.refs.fileInput.click()
+		if (!this.state.loading) {
+			this.refs.fileInput.click()
+		}
 	}
 
 	render() {
