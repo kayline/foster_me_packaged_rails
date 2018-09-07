@@ -75,6 +75,8 @@ class FosterFamiliesController < ApiController
 			filename: photo_data[:filename], 
 			content_type: photo_data[:file_type]
 		)
+
+		FileUtils.rm(file_location)
 	end
 
 	def decode_data_uri(data_uri)
