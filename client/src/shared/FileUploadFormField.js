@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Icon } from 'semantic-ui-react'
 
-class PhotoUploadForm extends Component {
+class FileUploadFormField extends Component {
 	
 	onFileSelected = (event) => {
 		const file = event.target.files[0]
@@ -40,4 +40,4 @@ class PhotoUploadForm extends Component {
 	}
 }
 
-export default PhotoUploadForm
+export default FileUploadFormField

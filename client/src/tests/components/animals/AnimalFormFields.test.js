@@ -3,7 +3,7 @@ import { mount, shallow } from 'enzyme'
 import moment from 'moment'
 import DatePicker from 'react-datepicker'
 import AnimalFormFields from '../../../components/animals/AnimalFormFields.js'
-import PhotoUploadFormField from '../../../shared/PhotoUploadFormField.js'
+import FileUploadFormField from '../../../shared/FileUploadFormField.js'
 import { Form } from 'semantic-ui-react'
 var fakeOnChange, wrapper, defaultDOB, emptyAnimal
 
@@ -37,7 +37,7 @@ it('renders all the fields for an animal', () => {
 														name="date_of_birth" 
 														className="animal-date-of-birth"
 													/>
-	const photoUpload = <PhotoUploadFormField label="Profile Photo" placeholder="Upload a Photo"/>
+	const photoUpload = <FileUploadFormField label="Profile Photo" placeholder="Upload a Photo"/>
 
 	expect(wrapper.containsAnyMatchingElements([animalNameInput])).toEqual(true)
 	expect(wrapper.containsAnyMatchingElements([animalDescriptionInput])).toEqual(true)

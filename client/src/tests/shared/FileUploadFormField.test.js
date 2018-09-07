@@ -1,12 +1,12 @@
 import React from 'react'
 import { mount, shallow } from 'enzyme'
-import PhotoUploadFormField from '../../shared/PhotoUploadFormField.js'
+import FileUploadFormField from '../../shared/FileUploadFormField.js'
 import { Icon } from 'semantic-ui-react'
 var fakeOnChange, wrapper
 
 beforeEach(() => {
 	fakeOnChange = jest.fn()
-	wrapper = shallow(<PhotoUploadFormField onChange={fakeOnChange} label='Profile Photo' placeholder='Upload a Photo' />)
+	wrapper = shallow(<FileUploadFormField onChange={fakeOnChange} label='Profile Photo' placeholder='Upload a Photo' />)
 })
 
 it('renders the label facade with given props', () => {
@@ -26,7 +26,7 @@ it('renders the hidden input', () => {
 })
 
 it('calls click on the hidden input when the icon is clicked', () => {
-	const mountedWrapper = mount(<PhotoUploadFormField onChange={fakeOnChange} />)
+	const mountedWrapper = mount(<FileUploadFormField onChange={fakeOnChange} />)
 	const fileInput = mountedWrapper.ref('fileInput')
 	const fakeInputClick = jest.fn()
 
