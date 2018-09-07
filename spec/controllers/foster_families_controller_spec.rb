@@ -70,10 +70,42 @@ RSpec.describe FosterFamiliesController do
 				get :show, params: {id: user_family.id}
 
 				expect(response.status).to eq 200
-				expect(json(response)['name']).to eq 'Belongs'
-				expect(json(response)['active']).to eq true
-				expect(json(response)['animals'].length).to eq 1
-				expect(json(response)['animals'][0]['name']).to eq 'Naminal'
+
+				family_response = json(response)['foster_family']
+
+				expect(family_response['name']).to eq 'Belongs'
+				expect(family_response['active']).to eq true
+				expect(family_response['animals'].length).to eq 1
+				expect(family_response['animals'][0]['name']).to eq 'Naminal'
+			end
+
+			it 'includes the animal profile photo info if present' do
+				test_image_location = Rails.root.join('spec', 'fixtures', 'files', 'what-cat.jpg')
+
+				animal.profile_photo.attach(
+					io: File.open(test_image_location),
+					filename: 'test-profile-photo.jpg',
+					content_type: 'image/jpeg'
+				)
+
+				get :show, params: {id: user_family.id}
+
+				expect(response.status).to eq 200
+
+				animal_response = json(response)['foster_family']['animals'][0]
+				
+				expect(animal_response['profile_photo_path']).to include 'active_storage/blobs/'
+				expect(animal_response['profile_photo_path']).to include 'test-profile-photo.jpg'
+			end
+
+			it 'includes a url to the default profile photo if none is present' do
+				get :show, params: {id: user_family.id}
+
+				expect(response.status).to eq 200
+
+				animal_response = json(response)['foster_family']['animals'][0]
+				
+				expect(animal_response['profile_photo_path']).to include 'public/images/default_profile_photo.jpg'
 			end
 
 			describe 'when the family does not belong to the user' do

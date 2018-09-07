@@ -8,7 +8,7 @@ beforeEach(() => {
 	animal = {
 		name: 'Dorbsicle',
 		date_of_birth: '2018-07-01',
-		image_url: 'dorbsicle_photo.jpg'
+		profile_photo_path: 'dorbsicle_photo.jpg'
 	}
 	wrapper = shallow(<Animal animal={animal} />);
 })
@@ -22,5 +22,5 @@ it('renders the Animal', () => {
 it('builds the correct photo url', () => {
 	const fullImageUrl = wrapper.state('full_image_url')
 
-	expect(fullImageUrl).toEqual('test.com/bucket-name/dorbsicle_photo.jpg')
+	expect(fullImageUrl).toEqual('test.com/blobs/dorbsicle_photo.jpg')
 })

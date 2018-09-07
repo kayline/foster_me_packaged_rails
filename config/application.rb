@@ -32,6 +32,10 @@ module FosterMe
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
+    Rails.application.routes.default_url_options = {
+        only_path: true
+    }
+
     # Middleware for ActiveAdmin
     config.middleware.use Rack::MethodOverride
     config.middleware.use ActionDispatch::Flash

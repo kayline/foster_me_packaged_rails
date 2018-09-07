@@ -21,7 +21,7 @@ class FosterFamilyDetail extends Component {
 		return fetch('/api/foster_families/' + this.state.id)
 		.then(response => this.handleErrors(response))
 		.then(response => response.json())
-		.then(result => this.setState({family: result, fetchComplete: true}))
+		.then(result => this.setState({family: result.foster_family, fetchComplete: true}))
 		.catch(error => this.setState({error: error, fetchComplete: true}))
 	}
 

@@ -18,7 +18,7 @@ afterEach(() => {
 
 it('fetches the foster family on mount', () => {
 	const emptyFamily = { id: 1, animals: []}
-	fetchMock.get('/api/foster_families/1', {status: 200, body: emptyFamily})
+	fetchMock.get('/api/foster_families/1', {status: 200, body: {foster_family: emptyFamily}})
 	const container = <div className="container family-container"></div>
 	
 	const wrapper = shallow(<FosterFamilyDetail match={fakeRouteInfo}/>);
@@ -30,7 +30,7 @@ it('fetches the foster family on mount', () => {
 it('renders the family details', async () => {
 	const animal = { id: 56, name: 'Adorbs', sex: 'female'}
 	const family = { id: 1, name: 'My Fam', animals: [animal]}
-	fetchMock.get('/api/foster_families/1', {status: 200, body: family})
+	fetchMock.get('/api/foster_families/1', {status: 200, body: {foster_family: family}})
 
 	const header = <Header size="large">My Fam</Header>
 	const animalItem = <Animal key={animal.id} animal={animal}/>

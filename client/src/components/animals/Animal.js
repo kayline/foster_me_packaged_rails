@@ -6,7 +6,7 @@ import { List } from 'semantic-ui-react'
 class Animal extends Component {
 	constructor(props) {
 		super(props)
-		this.state = {full_image_url: process.env.REACT_APP_BASE_PHOTO_URL + props.animal.image_url}
+		this.state = {full_image_url: process.env.REACT_APP_BASE_PHOTO_URL + props.animal.profile_photo_path}
 	}
 	
 	displayAge() {
