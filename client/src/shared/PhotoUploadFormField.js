@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Button } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 
 class PhotoUploadForm extends Component {
 	constructor(props) {
@@ -17,7 +17,7 @@ class PhotoUploadForm extends Component {
       this.props.onChange({
         data_uri: upload.target.result,
         filename: file.name,
-        filetype: file.type
+        file_type: file.type
       });
     };
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Divider } from 'semantic-ui-react'
 import DatePicker from 'react-datepicker'
+import PhotoUploadFormField from '../../shared/PhotoUploadFormField.js'
 import 'react-datepicker/dist/react-datepicker.css'
 
 class AnimalFormFields extends Component {
@@ -27,6 +28,10 @@ class AnimalFormFields extends Component {
 		this.onFieldChange(event, transformedArgs)
 	}
 
+	handlePhotoUpload = (photoData) => {
+		this.onFieldChange({}, {name: 'profile_photo_data', value: photoData})
+	}
+
 	render() {
 		const sexOptions = [
 			{key: "f", text: "Female", value: "Female"}, 
@@ -40,6 +45,7 @@ class AnimalFormFields extends Component {
 		    <Form.TextArea onChange={this.onFieldChange} label="Description" placeholder='What does this critter look like?' name="description" className="animal-description"/>
 	    	<Form.Select onChange={this.onFieldChange} label="Sex" options={sexOptions} placeholder="Sex" name="sex" className="animal-sex" />
 	    	<Form.Field onChange={this.handleDOBFieldChange} label="Date of Birth" control={DatePicker} selected={this.state.animal.date_of_birth} className="animal-date-of-birth" name="date_of_birth"/>
+	    	<PhotoUploadFormField onChange={this.handlePhotoUpload} />
 	    </div>
 		)
 	}

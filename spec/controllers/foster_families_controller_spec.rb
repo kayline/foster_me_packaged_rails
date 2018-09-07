@@ -140,16 +140,24 @@ RSpec.describe FosterFamiliesController do
 			end
 
 			it 'adds a profile photo to the animal if provided' do
-
-				profile_photo = fixture_file_upload(Rails.root.join('spec', 'fixtures', 'files', 'what-cat.jpg'), 'image/jpeg')
+				test_image_location = Rails.root.join('spec', 'fixtures', 'files', 'what-cat.jpg')
 				
+				encoded_profile_photo = Base64.strict_encode64(IO.binread(test_image_location))
+				file_type_prefix = 'data:thingy/stuff;base64,'
+
+				profile_photo_params = {
+					data_uri: file_type_prefix + encoded_profile_photo,
+					file_type: 'image/jpeg',
+					filename: 'what-cat.jpg'
+				}
+
 				post :create, params: {
 					family: {
 						name: 'New Fam', 
 						active: false,
 						animals: [{
 							name: 'Baby Cat', 
-							profile_photo: profile_photo
+							profile_photo_data: profile_photo_params
 						}]
 					},
 				}
