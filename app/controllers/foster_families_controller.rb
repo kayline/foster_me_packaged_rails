@@ -63,9 +63,9 @@ class FosterFamiliesController < ApiController
 		content = photo_data[:data_uri]
 		decoded_content = decode_data_uri(content)
 
-    file_location = Rails.root.join('tmp', 'storage', photo_data[:filename])
+    file_location = Rails.root.join('tmp', photo_data[:filename])
 
-		photo = File.open(file_location, 'wb') { |f|
+		File.open(file_location, 'wb') { |f|
 	    f.write(decoded_content)
 	    f.close
 	  }
