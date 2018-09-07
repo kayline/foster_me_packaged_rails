@@ -45,7 +45,7 @@ class AnimalFormFields extends Component {
 		    <Form.TextArea onChange={this.onFieldChange} label="Description" placeholder='What does this critter look like?' name="description" className="animal-description"/>
 	    	<Form.Select onChange={this.onFieldChange} label="Sex" options={sexOptions} placeholder="Sex" name="sex" className="animal-sex" />
 	    	<Form.Field onChange={this.handleDOBFieldChange} label="Date of Birth" control={DatePicker} selected={this.state.animal.date_of_birth} className="animal-date-of-birth" name="date_of_birth"/>
-	    	<PhotoUploadFormField onChange={this.handlePhotoUpload} />
+	    	<PhotoUploadFormField onChange={this.handlePhotoUpload} label="Profile Photo" placeholder="Upload a Photo" />
 	    </div>
 		)
 	}

@@ -1,14 +1,8 @@
 import React, { Component } from 'react'
-import { Button } from 'semantic-ui-react'
+import { Button, Icon } from 'semantic-ui-react'
 
 class PhotoUploadForm extends Component {
-	constructor(props) {
-		super(props)
-		this.state = {
-			photo: {}
-		}
-	}
-
+	
 	onFileSelected = (event) => {
 		const file = event.target.files[0]
 		const reader = new FileReader()
@@ -32,9 +26,15 @@ class PhotoUploadForm extends Component {
 
 	render() {
 		return (
-			<div className="file-upload-input">
-				<Button type="button" className="select-file-button" onClick={this.openFileSelection}>Upload a Photo</Button>
-				<input type="file" className="photo-file-input" ref="fileInput" onChange={this.onFileSelected} style={{display: "none"}} />
+			<div className="field file-upload">
+		 		<label>{this.props.label}</label>
+		 		<input type="file" ref="fileInput" className="file-input" onChange={this.onFileSelected} style={{display: 'none'}} />
+			 	<div className="ui action input fileInput">
+				 	<input type="text" id="file-name" placeholder={this.props.placeholder} />
+	        <label className="ui icon button btn-file select-file-trigger" onClick={this.openFileSelection}>
+             <Icon name='attach' />
+	        </label>
+			 	</div>
 			</div>
 		)
 	}

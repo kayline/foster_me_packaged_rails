@@ -1,18 +1,22 @@
 import React from 'react'
 import { mount, shallow } from 'enzyme'
 import PhotoUploadFormField from '../../shared/PhotoUploadFormField.js'
-import { Button } from 'semantic-ui-react'
+import { Icon } from 'semantic-ui-react'
 var fakeOnChange, wrapper
 
 beforeEach(() => {
 	fakeOnChange = jest.fn()
-	wrapper = shallow(<PhotoUploadFormField onChange={fakeOnChange} />)
+	wrapper = shallow(<PhotoUploadFormField onChange={fakeOnChange} label='Profile Photo' placeholder='Upload a Photo' />)
 })
 
-it('renders the visible button', () => {
-	const actionButton = <Button type="button" className="select-file-button">Upload a Photo</Button>
+it('renders the label facade with given props', () => {
+	const inputLabel = <label>Profile Photo</label>
+	const fileNameDisplay = <input id='file-name' placeholder='Upload a Photo'/>
+	const inputTrigger = <Icon name='attach' />
 	
-	expect(wrapper.containsAnyMatchingElements([actionButton])).toEqual(true)
+	expect(wrapper.containsAnyMatchingElements([inputLabel])).toEqual(true)
+	expect(wrapper.containsAnyMatchingElements([fileNameDisplay])).toEqual(true)
+	expect(wrapper.containsAnyMatchingElements([inputTrigger])).toEqual(true)
 })
 
 it('renders the hidden input', () => {
@@ -21,14 +25,14 @@ it('renders the hidden input', () => {
 	expect(wrapper.containsAnyMatchingElements([fileInput])).toEqual(true)
 })
 
-it('calls click on the hidden input when the button is clicked', () => {
+it('calls click on the hidden input when the icon is clicked', () => {
 	const mountedWrapper = mount(<PhotoUploadFormField onChange={fakeOnChange} />)
 	const fileInput = mountedWrapper.ref('fileInput')
 	const fakeInputClick = jest.fn()
 
 	fileInput.click = fakeInputClick
 
-	mountedWrapper.find('button.select-file-button').simulate('click')
+	mountedWrapper.find('.select-file-trigger').simulate('click')
 
 	expect(fakeInputClick).toHaveBeenCalled()
 	mountedWrapper.unmount()
@@ -44,7 +48,7 @@ it('calls onFileSelected when the file input changes', () => {
 			files: [{}]
 		}
 	}
-	const fileInput = wrapper.find('.photo-file-input')
+	const fileInput = wrapper.find('.file-input')
 	fileInput.simulate('change', fileSelectionEvent)
 
 	expect(fakeOnFileSelected).toHaveBeenCalledWith(fileSelectionEvent)

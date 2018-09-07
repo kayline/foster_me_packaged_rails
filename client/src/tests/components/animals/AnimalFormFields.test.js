@@ -37,7 +37,7 @@ it('renders all the fields for an animal', () => {
 														name="date_of_birth" 
 														className="animal-date-of-birth"
 													/>
-	const photoUpload = <PhotoUploadFormField />
+	const photoUpload = <PhotoUploadFormField label="Profile Photo" placeholder="Upload a Photo"/>
 
 	expect(wrapper.containsAnyMatchingElements([animalNameInput])).toEqual(true)
 	expect(wrapper.containsAnyMatchingElements([animalDescriptionInput])).toEqual(true)
