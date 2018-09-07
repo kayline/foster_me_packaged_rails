@@ -105,7 +105,7 @@ RSpec.describe FosterFamiliesController do
 
 				animal_response = json(response)['foster_family']['animals'][0]
 				
-				expect(animal_response['profile_photo_path']).to include 'public/images/default_profile_photo.jpg'
+				expect(animal_response['profile_photo_path']).to include '/images/paw_logo_orange_outline.svg'
 			end
 
 			describe 'when the family does not belong to the user' do
