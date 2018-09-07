@@ -1,0 +1,5 @@
+.ui.input.file-input-trigger > input.file-name {
+  opacity: 1;
+  cursor: pointer;
+  pointer-events: all;
+}
