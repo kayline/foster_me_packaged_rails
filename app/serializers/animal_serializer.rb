@@ -4,6 +4,6 @@ class AnimalSerializer < ActiveModel::Serializer
   attributes :id, :name, :description, :sex, :date_of_birth, :profile_photo_path
 
   def profile_photo_path
-  	object.profile_photo.attached? ? url_for(object.profile_photo) : '/public/images/default_profile_photo.jpg'
+  	object.profile_photo.attached? ? url_for(object.profile_photo) : '/images/paw_logo_orange_outline.svg'
   end
 end
