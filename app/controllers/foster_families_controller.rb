@@ -20,7 +20,7 @@ class FosterFamiliesController < ApiController
 	def create
 		@family = FosterFamily.new(family_params)
 		@animals = animals_params.map do |params|
-			build_animal_with_profile_photo(params) 
+			Animal.new(params) 
 		end
 		@family.animals = @animals
 
@@ -46,42 +46,6 @@ class FosterFamiliesController < ApiController
 		else
 			[]
 		end
-	end
-
-	def build_animal_with_profile_photo(animal_params)
-		profile_photo_data = animal_params.delete(:profile_photo_data)
-		animal = Animal.new(animal_params)
-
-		if(profile_photo_data.present?)
-			attach_profile_photo(animal, profile_photo_data)
-		end
-
-		animal
-	end
-
-	def attach_profile_photo(animal, photo_data)
-		content = photo_data[:data_uri]
-		decoded_content = decode_data_uri(content)
-
-    file_location = Rails.root.join('tmp', photo_data[:filename])
-
-		File.open(file_location, 'wb') { |f|
-	    f.write(decoded_content)
-	    f.close
-	  }
-
-		animal.profile_photo.attach(
-			io: File.open(file_location), 
-			filename: photo_data[:filename], 
-			content_type: photo_data[:file_type]
-		)
-
-		FileUtils.rm(file_location)
-	end
-
-	def decode_data_uri(data_uri)
-		file_start = data_uri.index(',') + 1
-		Base64.decode64 data_uri[file_start..-1]
 	end
 
 	def collect_animal_errors(animals)
