@@ -5,7 +5,12 @@
 	margin-right: auto;
 }
 
-.list-families-completed > .list-item-family a {
+.list-families-active, .list-families-completed {
+	text-align: left;
+
+}
+
+.list-families-completed > .list-item-family .family-link {
 	color: gray;
 }
 
@@ -13,6 +18,16 @@
 	color: gray;
 }
 
-.list-item-family a {
-	color: black;	
+.ui.list .item.list-item-family {
+	padding-left: 10px;
+	padding-right: 10px;	
+}
+
+.list-item-family .family-link {
+	color: black;
+	
+}
+
+.family-link .completion-date {
+	float: right;
 }
