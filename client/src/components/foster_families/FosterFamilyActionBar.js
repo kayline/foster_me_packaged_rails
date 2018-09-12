@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LinkButton from '../../shared/LinkButton.js'
+import LinkButton from '../shared/LinkButton.js'
 
 class FosterFamilyActionBar extends Component {
 	render() {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-import logo from '../assets/paw_logo_white.svg';
+import logo from '../../assets/paw_logo_white.svg';
 import UserActions from './UserActions.js'
 
 class PageHeader extends Component {

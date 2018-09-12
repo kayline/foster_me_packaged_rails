@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Form, Divider } from 'semantic-ui-react'
 import DatePicker from 'react-datepicker'
-import FileUploadFormField from '../../shared/FileUploadFormField.js'
+import FileUploadFormField from '../shared/FileUploadFormField.js'
 import 'react-datepicker/dist/react-datepicker.css'
 
 class AnimalFormFields extends Component {

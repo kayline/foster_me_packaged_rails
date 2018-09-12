@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount, shallow } from 'enzyme'
-import FileUploadFormField from '../../shared/FileUploadFormField.js'
+import FileUploadFormField from '../../../components/shared/FileUploadFormField.js'
 import { Icon } from 'semantic-ui-react'
 var fakeOnChange, wrapper, jsdom
 

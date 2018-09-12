@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Header, List } from 'semantic-ui-react'
-import PageHeader from '../shared/PageHeader.js'
+import PageHeader from '../components/shared/PageHeader.js'
 import Animal from '../components/animals/Animal.js'
 import NotFound from './NotFound.js'
 

@@ -3,7 +3,7 @@ import { mount, shallow } from 'enzyme'
 import moment from 'moment'
 import DatePicker from 'react-datepicker'
 import AnimalFormFields from '../../../components/animals/AnimalFormFields.js'
-import FileUploadFormField from '../../../shared/FileUploadFormField.js'
+import FileUploadFormField from '../../../components/shared/FileUploadFormField.js'
 import { Form } from 'semantic-ui-react'
 var fakeOnChange, wrapper, defaultDOB, emptyAnimal
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Header } from 'semantic-ui-react'
 import { withRouter } from "react-router-dom"
-import PageHeader from '../shared/PageHeader.js'
+import PageHeader from '../components/shared/PageHeader.js'
 import NewFosterFamilyForm from '../components/foster_families/NewFosterFamilyForm.js'
 
 class NewFosterFamily extends Component {

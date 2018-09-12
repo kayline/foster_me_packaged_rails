@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import SplashPageHeader from '../shared/SplashPageHeader.js'
+import SplashPageHeader from '../components/shared/SplashPageHeader.js'
 import WelcomeActions from '../components/WelcomeActions.js'
 
 class Welcome extends Component {

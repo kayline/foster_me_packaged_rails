@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Header } from 'semantic-ui-react'
-import logo from '../assets/paw_logo_white.svg';
+import logo from '../../assets/paw_logo_white.svg';
 
 class SplashPageHeader extends Component {
 	render() {
