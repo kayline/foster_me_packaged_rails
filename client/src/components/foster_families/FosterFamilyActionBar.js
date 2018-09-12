@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { Button } from 'semantic-ui-react'
+import LinkButton from '../../shared/LinkButton.js'
 
 class FosterFamilyActionBar extends Component {
 	render() {
 		return(
 			<div className="family-actions">
-				<Button primary className="new-family-button"><a href="/foster-families/new">Add A Foster Family</a></Button>
+				<LinkButton className="new-family-button" href="/foster-families/new" content="Add A Foster Family" />
 			</div>
 		)
 	}

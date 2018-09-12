@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Button } from 'semantic-ui-react'
+import LinkButton from '../shared/LinkButton.js'
 
 class WelcomeActions extends Component {
 	render() {
 		return (
 			<div className="welcome">
-				<Button primary><a href="/users/sign_in">Sign In</a></Button>
+				<LinkButton href="/users/sign_in" content="Sign In" />
 			</div>
 		)
 	}
