@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Button } from 'semantic-ui-react'
+import LinkButton from './LinkButton.js'
 
 class UserActions extends Component {
 	render () {
 		return (
-			<Button primary className="sign-out"><a href="/users/sign_out">Sign Out</a></Button>
+			<LinkButton href="/users/sign_out" className="sign-out" content="Sign Out" />
 		)
 	}
 }
