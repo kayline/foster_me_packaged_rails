@@ -8,7 +8,7 @@ class FosterFamiliesController < ApiController
 	end
 
 	def show
-		family = FosterFamily.where(id: params[:id]).first
+		family = FosterFamily.where(id: params[:id], user_id: current_user.id).first
 
 		if family.present? && family.user == current_user
 			render json: family, include: :animals, adapter: :json
@@ -34,7 +34,7 @@ class FosterFamiliesController < ApiController
 	end
 
 	def update
-		family = FosterFamily.where(id: params[:id]).first
+		family = FosterFamily.where(id: params[:id], user_id: current_user.id).first
 		if family.present?
 			family.update(family_params)
 		else

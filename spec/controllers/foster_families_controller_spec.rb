@@ -246,5 +246,13 @@ RSpec.describe FosterFamiliesController do
 				expect(response.status).to eq 404
 			end
 		end
+
+		describe 'when the family does not belong to the user' do
+			it 'returns a 404' do
+				post :update, params: { id: other_family.id, family: {active: false, completion_date: '01/01/2018'} }
+
+				expect(response.status).to eq 404
+			end
+		end
 	end
 end
