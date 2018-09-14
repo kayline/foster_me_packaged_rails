@@ -28,8 +28,7 @@ class FosterFamiliesController < ApiController
 			family.save!
 			render status: 201
 		else
-			animals_errors = collect_animal_errors(family.animals)
-			render json: {errors:{family: family.errors.full_messages, animals: animals_errors}}, status: 400
+			render json: {errors:{family: family.errors.full_messages, animals: family.animal_errors}}, status: 400
 		end
 	end
 
@@ -54,12 +53,6 @@ class FosterFamiliesController < ApiController
 			animals
 		else
 			[]
-		end
-	end
-
-	def collect_animal_errors(animals)
-		animals.flat_map do |animal|
-			animal.errors.full_messages
 		end
 	end
 end
