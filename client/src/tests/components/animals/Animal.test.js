@@ -1,6 +1,5 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import moment from 'moment'
 import Animal from '../../../components/animals/Animal.js'
 var animal, wrapper
 
