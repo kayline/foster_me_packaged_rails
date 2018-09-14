@@ -28,6 +28,11 @@
 	
 }
 
-.family-link .completion-date {
+.family-link {
+	display: inline-block;
+}
+
+.completion-date {
 	float: right;
+	color: gray;
 }

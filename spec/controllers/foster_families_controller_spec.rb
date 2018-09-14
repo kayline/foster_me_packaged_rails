@@ -218,4 +218,33 @@ RSpec.describe FosterFamiliesController do
 			end
 		end
 	end
+
+	describe 'update' do
+
+		before do
+			sign_in user
+		end
+
+		describe 'when the family exists' do
+			it 'updates the family with the new attributes and preserves unchanged attributes' do
+				post :update, params: { id: user_family.id, family: {active: false, completion_date: '2018-09-13'} }
+
+				expect(user_family.completion_date).to eq nil
+				expect(response.status).to eq 204
+				family = FosterFamily.find(user_family.id)
+				expect(family.user).to eq user
+				expect(family.name).to eq user_family.name
+				expect(family.active).to eq false
+				expect(family.completion_date).to eq Date.parse('2018-09-13')
+			end
+		end
+
+		describe 'when the family does not exist' do
+			it 'returns a 404' do
+				post :update, params: { id: 1000, family: {active: false, completion_date: '01/01/2018'} }
+
+				expect(response.status).to eq 404
+			end
+		end
+	end
 end
