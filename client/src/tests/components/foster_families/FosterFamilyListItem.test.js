@@ -5,6 +5,10 @@ import moment from 'moment'
 import { Button } from 'semantic-ui-react'
 import FosterFamilyListItem from '../../../components/foster_families/FosterFamilyListItem.js'
 
+afterEach(() => {
+	fetchMock.restore()
+})
+
 it('renders the completion date if present',() => {
 	const family = {
 		id: 1,
@@ -74,4 +78,21 @@ it('calls the backend to set family status to complete when the completion butto
 	expect(fetchMock.lastCall()[0]).toEqual('/api/foster_families/1')
 	expect(fetchMock.lastCall()[1].body).toEqual(JSON.stringify({family: {active: false, completion_date: today}}))
 	expect(fetchMock.lastCall()[1].method).toEqual('post')
+})
+
+it('calls the parent onUpdateSuccess method when family update is successful', async () => {
+	fetchMock.post('/api/foster_families/1', {status: 200})
+	const fakeUpdateSuccess = jest.fn()
+	const family = {
+		id: 1,
+		name: "All Done",
+		active: true, 
+		completion_date: null
+	}
+
+	const wrapper = shallow(<FosterFamilyListItem family={family} onUpdateSuccess={fakeUpdateSuccess}/>)
+	await wrapper.instance().onFamilyCompleted()
+	wrapper.update()
+
+	expect(fakeUpdateSuccess).toHaveBeenCalled()
 })

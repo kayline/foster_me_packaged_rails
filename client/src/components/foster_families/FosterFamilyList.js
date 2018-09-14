@@ -15,6 +15,10 @@ class FosterFamilyList extends Component {
 	}
 
 	componentDidMount() {
+		return this.fetchFamilies()
+	}
+
+	fetchFamilies = () => {
 		return fetch('/api/foster_families')
 		.then(response => this.handleErrors(response))
 		.then(response => response.json())
@@ -51,6 +55,7 @@ class FosterFamilyList extends Component {
 		      		<FosterFamilyListItem
 		      			key={family.id}
 		      			family={family}
+		      			onUpdateSuccess={this.fetchFamilies}
 		      		/>
 		        ))}
 	        </List>

@@ -30,7 +30,7 @@ class FosterFamilyListItem extends Component {
 				headers: headers, 
 				body: JSON.stringify({family: {active: false, completion_date: today}})
 			}
-		)
+		).then(() => this.props.onUpdateSuccess())
 	}
 
 	render() {
