@@ -1,9 +1,10 @@
 class Animal < ApplicationRecord
 	attr_accessor :profile_photo_data
 	belongs_to :foster_family
-	validates_presence_of :name
-
+	has_many :weight_measurements
 	has_one_attached :profile_photo
+	
+	validates_presence_of :name
 
 	before_validation :handle_profile_photo
 
