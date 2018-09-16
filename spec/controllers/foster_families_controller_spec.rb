@@ -108,6 +108,22 @@ RSpec.describe FosterFamiliesController do
 				expect(animal_response['profile_photo_path']).to include '/images/paw_logo_orange_outline.svg'
 			end
 
+			it 'includes the animal weight measurements if present' do
+				weight = WeightMeasurement.create!(
+					weight_in_grams: 400, 
+					date: Date.parse('2018-09-15'), 
+					animal_id: animal.id
+				)
+
+				get :show, params: {id: user_family.id}
+
+				animal_response = json(response)['foster_family']['animals'][0]
+
+				expect(animal_response['weight_measurements'].length).to eq 1
+				expect(animal_response['weight_measurements'][0]['weight_in_grams']).to eq 400
+				expect(animal_response['weight_measurements'][0]['date']).to eq '2018-09-15'
+			end
+
 			describe 'when the family does not belong to the user' do
 				it 'returns a 401 error' do
 					get :show, params: {id: other_family.id}
