@@ -11,7 +11,7 @@ class FosterFamiliesController < ApiController
 		family = FosterFamily.find_for_id_and_user(params[:id], current_user.id)
 
 		if family.present? && family.user == current_user
-			render json: family, include: :animals, adapter: :json
+			render json: family, adapter: :json
 		else
 			render json: {errors: ['Family not found']}, status: 404
 		end
