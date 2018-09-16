@@ -10,8 +10,9 @@ class Animal extends Component {
 	}
 	
 	displayAge() {
-		var now = moment()
-		var ageInWeeks = now.diff(this.props.animal.date_of_birth, 'weeks')
+		const now = moment()
+		const ageInWeeks = now.diff(this.props.animal.date_of_birth, 'weeks')
+		
 		if(ageInWeeks < 12) {
 			return moment.duration(ageInWeeks, 'weeks').format("W [weeks]")
 		} else {
