@@ -16,6 +16,19 @@ class Clock {
 			return duration.format("Y [years] M [months]")
 		}
 	}
+
+	static timeSinceRecent(date) {
+		const daysSince = moment().diff(date, 'days')
+		const duration = moment.duration(daysSince, 'days')
+
+		if(daysSince < 10) {
+			return duration.format('D [days] [ago]')
+		} else if(daysSince < 32){
+			return duration.format('W [weeks] [ago]')
+		} else {
+			return 'more than a month ago'
+		}
+	}
 }
 
 export default Clock

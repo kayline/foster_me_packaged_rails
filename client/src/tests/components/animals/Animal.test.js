@@ -5,7 +5,8 @@ var animal, wrapper, fakeClock
 
 beforeEach(() => {
 	fakeClock = jest.genMockFromModule('../../../helpers/Clock.js')
-	fakeClock.ageInWeeks = jest.fn(dob => 5)
+	fakeClock.formattedAge = jest.fn(dob => '5 weeks')
+	fakeClock.timeSinceRecent = jest.fn(date => '6 days ago')
 
 	const weightMeasurement = { weight_in_grams: 400, date: '2018-09-15' }
 	animal = {
@@ -38,7 +39,7 @@ it('builds the correct photo url', () => {
 })
 
 it('displays the weight if present', () => {
-	const weightMessage = <div className="weight">Weight: 400 grams</div>
+	const weightMessage = <div className="weight">Weight: 400 grams, measured 6 days ago</div>
 	
 	expect(wrapper.containsAnyMatchingElements([weightMessage])).toEqual(true)
 })
@@ -69,7 +70,7 @@ it('displays the most recent weight if multiple measurements are present', () =>
 	}
 	wrapper = shallow(<Animal animal={veryWeighedAnimal} clock={fakeClock}/>);
 
-	const weightMessage = <div className="weight">Weight: 450 grams</div>
+	const weightMessage = <div className="weight">Weight: 450 grams, measured 6 days ago</div>
 
 	expect(wrapper.containsAnyMatchingElements([weightMessage])).toEqual(true)
 })

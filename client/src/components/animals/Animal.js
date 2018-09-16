@@ -18,7 +18,7 @@ class Animal extends Component {
 		var message = null
 
 		if(weightMeasurement != undefined) {
-			message = `Weight: ${weightMeasurement.weight_in_grams} grams`
+			message = `Weight: ${weightMeasurement.weight_in_grams} grams, measured ${this.props.clock.timeSinceRecent(weightMeasurement.date)}`
 		} else {
 			message = "No weight recorded"
 		}
