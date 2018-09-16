@@ -40,7 +40,7 @@ it('renders the family details', async () => {
   wrapper.update()
 	
 	expect(wrapper.contains(header)).toEqual(true)
-	expect(wrapper.contains(animalItem)).toEqual(true)
+	expect(wrapper.containsAnyMatchingElements([animalItem])).toEqual(true)
 })
 
 it('renders an error message if the family is not found', async () => {

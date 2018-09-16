@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Header, List } from 'semantic-ui-react'
+import clock from '../helpers/Clock.js'
 import PageHeader from '../components/shared/PageHeader.js'
 import Animal from '../components/animals/Animal.js'
 import NotFound from './NotFound.js'
@@ -41,7 +42,9 @@ class FosterFamilyDetail extends Component {
 						{this.state.family.animals.map(animal => (
 		      		<Animal
 		      			key={animal.id}
-		      			animal={animal}/>
+		      			animal={animal}
+		      			clock={clock}
+	      			/>
 		        ))}
 	        </List>
         </div>

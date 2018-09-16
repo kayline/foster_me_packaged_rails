@@ -10,14 +10,7 @@ class Animal extends Component {
 	}
 	
 	displayAge() {
-		const now = moment()
-		const ageInWeeks = now.diff(this.props.animal.date_of_birth, 'weeks')
-		
-		if(ageInWeeks < 12) {
-			return moment.duration(ageInWeeks, 'weeks').format("W [weeks]")
-		} else {
-			return moment.duration(ageInWeeks, 'weeks').format("Y [years] M [months]")
-		}
+		return this.props.clock.formattedAge(this.props.animal.date_of_birth)
 	}
 
 	weightMessage = () => {

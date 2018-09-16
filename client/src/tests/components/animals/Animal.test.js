@@ -1,23 +1,34 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import Animal from '../../../components/animals/Animal.js'
-var animal, wrapper
+var animal, wrapper, fakeClock
 
 beforeEach(() => {
+	fakeClock = jest.genMockFromModule('../../../helpers/Clock.js')
+	fakeClock.ageInWeeks = jest.fn(dob => 5)
+
 	const weightMeasurement = { weight_in_grams: 400, date: '2018-09-15' }
 	animal = {
 		name: 'Dorbsicle',
+		description: 'Adorbs',
 		date_of_birth: '2018-07-01',
+		sex: 'Female',
 		profile_photo_path: 'dorbsicle_photo.jpg',
 		weight_measurements: [weightMeasurement]
 	}
-	wrapper = shallow(<Animal animal={animal} />);
+	wrapper = shallow(<Animal animal={animal} clock={fakeClock}/>);
 })
 
-it('renders the Animal', () => {
+it('renders the Animal info', () => {
 	const name = <div className="name">My name is Dorbsicle</div>
+	const description = <div>Adorbs</div>
+	const age = <div>Age: 5 weeks</div>
+	const sex = <div>Sex: Female</div>
 
 	expect(wrapper.contains(name)).toEqual(true)
+	expect(wrapper.contains(description)).toEqual(true)
+	expect(wrapper.contains(age)).toEqual(true)
+	expect(wrapper.contains(sex)).toEqual(true)
 })
 
 it('builds the correct photo url', () => {
@@ -39,7 +50,7 @@ it('displays a message if no weight measurements are present', () => {
 		profile_photo_path: 'dorbsicle_photo.jpg',
 		weight_measurements: []
 	}
-	wrapper = shallow(<Animal animal={unweighedAnimal} />);
+	wrapper = shallow(<Animal animal={unweighedAnimal} clock={fakeClock}/>);
 
 	const weightMessage = <div className="weight">No weight recorded</div>
 	
@@ -56,9 +67,9 @@ it('displays the most recent weight if multiple measurements are present', () =>
 		profile_photo_path: 'dorbsicle_photo.jpg',
 		weight_measurements: [firstWeight, secondWeight]
 	}
-	wrapper = shallow(<Animal animal={veryWeighedAnimal} />);
+	wrapper = shallow(<Animal animal={veryWeighedAnimal} clock={fakeClock}/>);
 
 	const weightMessage = <div className="weight">Weight: 450 grams</div>
-	
+
 	expect(wrapper.containsAnyMatchingElements([weightMessage])).toEqual(true)
 })
