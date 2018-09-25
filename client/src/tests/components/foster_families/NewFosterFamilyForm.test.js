@@ -110,8 +110,6 @@ it('calls handleSubmit with the family data on submit', () => {
 	const checkbox = wrapper.find('.active')
 	checkbox.simulate('change', {}, {name: 'active', checked: true, type: 'checkbox'})
 
-	const submitButton = wrapper.find(Button).at(0).dive().find('button[type="submit"]')
-
 	wrapper.find(Form).simulate('submit')
 
 	expect(handleSubmitSpy).toBeCalledWith({name: 'Best Family', active: true, animals: [{key: 1, date_of_birth: moment().startOf('year')}]})
