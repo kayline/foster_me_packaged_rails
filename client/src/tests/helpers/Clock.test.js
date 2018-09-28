@@ -2,7 +2,7 @@ import Clock from '../../helpers/Clock.js'
 import moment from 'moment'
 
 it('#ageInWeeks can calculate age in weeks from date of birth', () => {
-	const dateOfBirth = moment().subtract(3, 'weeks').format('YYYY-MM-D')
+	const dateOfBirth = moment().subtract(3, 'weeks').format('YYYY-MM-DD')
 	const age = Clock.ageInWeeks(dateOfBirth)
 	
 	expect(age).toEqual(3)
