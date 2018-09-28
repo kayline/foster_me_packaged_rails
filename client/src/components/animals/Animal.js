@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import moment from 'moment'
 import momentDurationFormatSetup from "moment-duration-format"
 import { List } from 'semantic-ui-react'
+import WeightMeasurementForm from './WeightMeasurementForm.js'
 
 class Animal extends Component {
 	constructor(props) {
@@ -49,6 +50,7 @@ class Animal extends Component {
 					<div>Age: {this.displayAge()}</div>
 					<div>Sex: {this.props.animal.sex}</div>
 					{this.weightMessage()}
+					<WeightMeasurementForm animalId={this.props.animal.id}/>
 				</List.Item>
 			)
 	}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import Animal from '../../../components/animals/Animal.js'
+import WeightMeasurementForm from '../../../components/animals/WeightMeasurementForm.js'
 var animal, wrapper, fakeClock
 
 beforeEach(() => {
@@ -73,4 +74,18 @@ it('displays the most recent weight if multiple measurements are present', () =>
 	const weightMessage = <div className="weight">Weight: 450 grams, measured 6 days ago</div>
 
 	expect(wrapper.containsAnyMatchingElements([weightMessage])).toEqual(true)
+})
+
+it('displays the weight measurement form', () => {
+	const unweighedAnimal = {
+		id: 5,
+		name: 'Dorbsicle',
+		date_of_birth: '2018-07-01',
+		profile_photo_path: 'dorbsicle_photo.jpg',
+		weight_measurements: []
+	}
+	wrapper = shallow(<Animal animal={unweighedAnimal} clock={fakeClock}/>);
+
+	const form = <WeightMeasurementForm animalId={5}/>
+	expect(wrapper.containsAnyMatchingElements([form])).toEqual(true)
 })

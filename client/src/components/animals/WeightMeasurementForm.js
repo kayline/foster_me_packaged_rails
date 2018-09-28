@@ -14,7 +14,13 @@ class WeightMeasurementForm extends Component {
 	}
 
 	handleSubmit = () => {
-		this.props.onSubmit(this.state)
+		const weightParams = {...this.state, ...{animal_id: this.props.animalId}}
+		const headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
+		return fetch('/api/weight_measurements', {
+			method: 'post', 
+			headers: headers, 
+			body: JSON.stringify(weightParams)
+		})
 	}
 
 	render() {
@@ -22,7 +28,7 @@ class WeightMeasurementForm extends Component {
 			<Form className="new-weight-measurement-form" onSubmit={this.handleSubmit}>
 				<Form.Input
 					onChange={this.handleFormChange} 
-					name="weight" 
+					name="weight_in_grams" 
 					className="new-weight-measurement" 
 					label="Weight (in grams)"
 				/>

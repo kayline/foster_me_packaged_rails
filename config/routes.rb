@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   
 	resource :api do
   	resources :foster_families, only: [:index, :show, :create]
+    resources :weight_measurements, only: [:create]
     post 'foster_families/:id', to: 'foster_families#update'
   	resource :current_user, only: [:show]
   end
