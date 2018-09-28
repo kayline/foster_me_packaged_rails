@@ -89,3 +89,11 @@ it('displays the weight measurement form', () => {
 	const form = <WeightMeasurementForm animalId={5}/>
 	expect(wrapper.containsAnyMatchingElements([form])).toEqual(true)
 })
+
+it('updates the weights with the response from the form', () => {
+	wrapper.instance().addWeightMeasurement({weight_in_grams: 450, date: '2018-09-28'})
+
+	const weightMessage = <div className="weight">Weight: 450 grams, measured 6 days ago</div>
+
+	expect(wrapper.containsAnyMatchingElements([weightMessage])).toEqual(true)
+})

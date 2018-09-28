@@ -18,6 +18,14 @@ RSpec.describe WeightMeasurementsController do
 			expect(weight.date).to eq Date.today
 		end
 
+		it 'returns the new measurement' do
+			post :create, params: {animal_id: animal.id, weight_in_grams: 300}
+
+			new_weight = JSON.parse(response.body)
+			expect(new_weight['weight_in_grams']).to eq 300
+			expect(new_weight['date']).to eq Date.today.to_s
+		end
+
 		describe 'when the animal does not exist' do
 			it 'returns a 404' do
 				post :create, params: {animal_id: 1000, weight_in_grams: 200}

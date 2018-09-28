@@ -4,7 +4,8 @@ class WeightMeasurementsController < ApiController
 	def create
 		animal = Animal.find_by(id: weight_params[:animal_id])
 		if animal.present? && animal.belongs_to_user?(current_user)
-			WeightMeasurement.create!(weight_params)
+			new_weight = WeightMeasurement.create!(weight_params)
+			render json: new_weight
 		else
 			render status: 404
 		end
