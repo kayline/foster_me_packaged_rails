@@ -17,5 +17,25 @@ RSpec.describe WeightMeasurementsController do
 			expect(weight.weight_in_grams).to eq 300
 			expect(weight.date).to eq Date.today
 		end
+
+		describe 'when the animal does not exist' do
+			it 'returns a 404' do
+				post :create, params: {animal_id: 1000, weight_in_grams: 200}
+
+				expect(response.status).to eq 404
+			end
+		end
+
+		describe 'when the animal does not belong to the current user' do
+			let(:other_user) 		{ User.create!(email: 'other@test.com', password: 'password') }
+			let(:other_family) 	{ FosterFamily.create!(name: 'Nope', user_id: other_user.id, active: true) }
+			let(:other_animal) 	{ Animal.create!(name: 'Not Yours', foster_family_id: other_family.id) }
+
+			it 'returns a 404' do
+				post :create, params: {animal_id: other_animal.id, weight_in_grams: 200}
+
+				expect(response.status).to eq 404
+			end
+		end
 	end
 end

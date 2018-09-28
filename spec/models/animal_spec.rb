@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Animal do
+	let(:user) { User.create(email: 'user@test.com', password: 'password') }
+	let(:foster_family) { FosterFamily.create(name: 'New Fam', active: true, user_id: user.id) }
+	
 	describe 'before validation' do
-		let(:user) { User.create(email: 'user@test.com', password: 'password') }
-		let(:foster_family) { FosterFamily.create(name: 'New Fam', active: true, user_id: user.id) }
-
 		describe 'when the attrs include a profile photo' do
 			before do
 				test_image_location = Rails.root.join('spec', 'fixtures', 'files', 'what-cat.jpg')
@@ -39,6 +39,19 @@ RSpec.describe Animal do
 			it 'works' do
 				expect(animal.valid?).to be_truthy
 			end
+		end
+	end
+
+	describe '#belongs_to_user?' do
+		let(:animal) { Animal.create!(name: 'Yours', foster_family_id: foster_family.id) }
+		let(:other_user) 		{ User.create!(email: 'other@test.com', password: 'password') }
+
+		it 'returns true if the animal belongs to a family that belongs to the user' do
+			expect(animal.belongs_to_user?(user)).to be_truthy
+		end
+
+		it 'returns false if the parent family belongs to a different user' do
+			expect(animal.belongs_to_user?(other_user)).to be_falsey
 		end
 	end
 end

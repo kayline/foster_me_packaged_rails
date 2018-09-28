@@ -8,6 +8,10 @@ class Animal < ApplicationRecord
 
 	before_validation :handle_profile_photo
 
+	def belongs_to_user?(user)
+		foster_family.user == user
+	end
+
 	private
 
 	def handle_profile_photo
